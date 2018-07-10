@@ -1,4 +1,4 @@
-package com.lessonscontrol.lessonscontrol;
+package com.lessonscontrol.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

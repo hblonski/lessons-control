@@ -1,4 +1,4 @@
-package com.lessonscontrol.lessonscontrol;
+package com.lessonscontrol.activities;
 
 import android.content.Intent;
 import android.os.Bundle;

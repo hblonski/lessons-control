@@ -2,4 +2,10 @@
     <string name="app_name">LessonsControl</string>
     <string name="action_settings">Settings</string>
 
+    <!-- Student -->
+    <string name="name">Name</string>
+    <string name="mail">E-mail</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+
 </resources>
