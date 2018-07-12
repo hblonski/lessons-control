@@ -22,18 +22,23 @@ public class Lesson {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "les_id")
     private long ID;
 
+    @ColumnInfo(name = "les_student")
     private long student;
 
+    @ColumnInfo(name = "les_days")
     private String days;
 
+    @ColumnInfo(name = "les_price")
     private Double price;
 
+    @ColumnInfo(name = "les_type")
     private String type;
 
     //In milliseconds.
+    @ColumnInfo(name = "les_nextpayment")
     private long nextPayment;
 
     public Lesson(long student, String days, Double price, String type, long nextPayment) {

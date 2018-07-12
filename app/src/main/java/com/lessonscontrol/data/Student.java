@@ -15,16 +15,20 @@ public class Student {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
-    @ColumnInfo(name = "id")
+    @ColumnInfo(name = "sdt_id")
     private long ID;
 
     @NonNull
+    @ColumnInfo(name = "sdt_name")
     private String name;
 
+    @ColumnInfo(name = "sdt_address")
     private String address;
 
+    @ColumnInfo(name = "sdt_email")
     private String email;
 
+    @ColumnInfo(name = "sdt_phone")
     private String phone;
 
     public Student(String name, String address, String email, String phone) {

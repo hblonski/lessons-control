@@ -2,19 +2,23 @@ package com.lessonscontrol.data;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.support.annotation.NonNull;
 
 /**
  * Relationship between days of week and {@link Lesson}.
  *
  * @author hblonski
  */
-@Entity(tableName = "les_schedule",
-        primaryKeys = {"lesson_id", "day"})
+@Entity(tableName = "schedule",
+        primaryKeys = {"sch_lessonid", "sch_day"})
 public class Schedule {
 
-    @ColumnInfo(name = "lesson_id")
+    @ColumnInfo(name = "sch_lessonid")
+    @NonNull
     private long lessonID;
 
+    @ColumnInfo(name = "sch_day")
+    @NonNull
     private int day;
 
     public Schedule(long lessonID, int day) {
