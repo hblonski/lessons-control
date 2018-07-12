@@ -6,7 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-
+/**
+ * Main activity.
+ * @author hblonski
+ */
 public class MainActivity extends AppCompatActivity {
 
     private static final int NEW_STUDENT_ACTIVITY_REQUEST_CODE = 1;
