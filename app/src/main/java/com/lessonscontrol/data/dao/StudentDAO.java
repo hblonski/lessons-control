@@ -1,9 +1,12 @@
-package com.lessonscontrol.data;
+package com.lessonscontrol.data.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+
+import com.lessonscontrol.data.entities.Student;
 
 import java.util.List;
 
@@ -22,5 +25,5 @@ public interface StudentDAO {
     void delete(Student student);
 
     @Query("SELECT * FROM student ORDER BY sdt_name ASC")
-    List<Student> getAllStudents();
+    LiveData<List<Student>> getAllStudents();
 }

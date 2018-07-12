@@ -1,9 +1,12 @@
-package com.lessonscontrol.data;
+package com.lessonscontrol.data.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+
+import com.lessonscontrol.data.entities.Schedule;
 
 import java.util.List;
 
@@ -22,5 +25,5 @@ public interface ScheduleDAO {
     void delete(Schedule schedule);
 
     @Query("SELECT * FROM schedule WHERE sch_lessonid = :lessonID ORdER BY sch_day ASC")
-    List<Schedule> findScheduleByLesson(long lessonID);
+    LiveData<List<Schedule>> findScheduleByLesson(long lessonID);
 }
