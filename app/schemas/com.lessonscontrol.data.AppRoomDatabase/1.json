@@ -1,0 +1,172 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "171c8f7afdd405fc8ab75a1abe3e88ec",
+    "entities": [
+      {
+        "tableName": "student",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sdt_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sdt_name` TEXT NOT NULL, `sdt_address` TEXT, `sdt_email` TEXT, `sdt_phone` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "ID",
+            "columnName": "sdt_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "sdt_name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "address",
+            "columnName": "sdt_address",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "sdt_email",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "sdt_phone",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sdt_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_student_sdt_id",
+            "unique": false,
+            "columnNames": [
+              "sdt_id"
+            ],
+            "createSql": "CREATE  INDEX `index_student_sdt_id` ON `${TABLE_NAME}` (`sdt_id`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "lesson",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`les_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `les_student` INTEGER NOT NULL, `les_days` TEXT, `les_price` REAL, `les_type` TEXT, `les_nextpayment` INTEGER NOT NULL, FOREIGN KEY(`les_student`) REFERENCES `student`(`sdt_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "ID",
+            "columnName": "les_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "student",
+            "columnName": "les_student",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "days",
+            "columnName": "les_days",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "les_price",
+            "affinity": "REAL",
+            "notNull": false
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "les_type",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nextPayment",
+            "columnName": "les_nextpayment",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "les_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_lesson_les_id",
+            "unique": false,
+            "columnNames": [
+              "les_id"
+            ],
+            "createSql": "CREATE  INDEX `index_lesson_les_id` ON `${TABLE_NAME}` (`les_id`)"
+          },
+          {
+            "name": "index_lesson_les_student",
+            "unique": false,
+            "columnNames": [
+              "les_student"
+            ],
+            "createSql": "CREATE  INDEX `index_lesson_les_student` ON `${TABLE_NAME}` (`les_student`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "student",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "les_student"
+            ],
+            "referencedColumns": [
+              "sdt_id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "schedule",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sch_lessonid` INTEGER NOT NULL, `sch_day` INTEGER NOT NULL, PRIMARY KEY(`sch_lessonid`, `sch_day`))",
+        "fields": [
+          {
+            "fieldPath": "lessonID",
+            "columnName": "sch_lessonid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "sch_day",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sch_lessonid",
+            "sch_day"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"171c8f7afdd405fc8ab75a1abe3e88ec\")"
+    ]
+  }
+}
