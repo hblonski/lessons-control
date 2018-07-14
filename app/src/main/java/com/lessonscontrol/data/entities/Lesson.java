@@ -3,6 +3,7 @@ package com.lessonscontrol.data.entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.ForeignKey;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -14,9 +15,10 @@ import static android.arch.persistence.room.ForeignKey.CASCADE;
  * @author hblonski
  */
 @Entity(tableName = "lesson",
+        indices = {@Index("les_id"), @Index("les_student")},
         foreignKeys = @ForeignKey(entity = Student.class,
-                parentColumns = "id",
-                childColumns = "student",
+                parentColumns = "sdt_id",
+                childColumns = "les_student",
                 onDelete = CASCADE))
 public class Lesson {
 
@@ -52,6 +54,10 @@ public class Lesson {
     @NonNull
     public long getID() {
         return this.ID;
+    }
+
+    public void setID(@NonNull long ID) {
+        this.ID = ID;
     }
 
     public long getStudent() {

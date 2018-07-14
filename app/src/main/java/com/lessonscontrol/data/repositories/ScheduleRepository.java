@@ -1,4 +1,4 @@
-package com.lessonscontrol.data.respositories;
+package com.lessonscontrol.data.repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;

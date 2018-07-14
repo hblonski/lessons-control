@@ -30,6 +30,10 @@ public class Schedule {
         return this.lessonID;
     }
 
+    public void setLessonID(@NonNull long lessonID) {
+        this.lessonID = lessonID;
+    }
+
     public int getDay() {
         return this.day;
     }

@@ -2,6 +2,7 @@ package com.lessonscontrol.data.entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
@@ -10,7 +11,8 @@ import android.support.annotation.NonNull;
  *
  * @author hblonski
  */
-@Entity(tableName = "student")
+@Entity(tableName = "student",
+        indices = {@Index("sdt_id")})
 public class Student {
 
     @PrimaryKey(autoGenerate = true)
@@ -40,6 +42,10 @@ public class Student {
 
     public long getID() {
         return this.ID;
+    }
+
+    public void setID(@NonNull long ID) {
+        this.ID = ID;
     }
 
     public String getName() {

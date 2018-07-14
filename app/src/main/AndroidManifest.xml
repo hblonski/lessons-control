@@ -24,5 +24,4 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
-
 </manifest>
