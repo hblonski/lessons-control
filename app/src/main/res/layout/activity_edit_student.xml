@@ -7,7 +7,7 @@
     tools:context="com.lessonscontrol.activities.EditStudentActivity"
     android:background="@android:color/white">
 
-    <include layout="@layout/new_student_form" />
+    <include layout="@layout/edit_student_form" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/edit_student_form_done_fab"
