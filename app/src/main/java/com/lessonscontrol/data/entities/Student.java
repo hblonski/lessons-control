@@ -4,6 +4,8 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.Index;
 import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 /**
@@ -13,7 +15,10 @@ import android.support.annotation.NonNull;
  */
 @Entity(tableName = "student",
         indices = {@Index("sdt_id")})
-public class Student {
+public class Student implements Parcelable {
+
+    //Used when passing an student between activities.
+    public static final String STUDENT_EXTRA_KEY = "student";
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -78,5 +83,44 @@ public class Student {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    //Parcelable interface methods implementation. This interface is used to allow a Student object
+    //to be passed between activities.
+
+    //Constructor that takes a Parcel and gives you an object populated with it's values. The order
+    //must be the same used in the writeToParcel method (see below).
+    private Student(Parcel in) {
+        this.ID = in.readLong();
+        this.name = in.readString();
+        this.phone = in.readString();
+        this.email = in.readString();
+        this.address = in.readString();
+    }
+
+    //This is used to regenerate the object. All Parcelables must have a CREATOR
+    //that implements these two methods
+    public static final Parcelable.Creator<Student> CREATOR = new Parcelable.Creator<Student>() {
+        public Student createFromParcel(Parcel in) {
+            return new Student(in);
+        }
+
+        public Student[] newArray(int size) {
+            return new Student[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(this.ID);
+        dest.writeString(this.name);
+        dest.writeString(this.phone);
+        dest.writeString(this.email);
+        dest.writeString(this.address);
     }
 }

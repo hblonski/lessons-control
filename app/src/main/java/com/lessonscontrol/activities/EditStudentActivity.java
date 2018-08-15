@@ -16,28 +16,28 @@ import com.lessonscontrol.data.viewModel.StudentViewModel;
  * New student form activity.
  * @author hblonski
  */
-public class NewStudentActivity extends AppCompatActivity {
+public class EditStudentActivity extends AppCompatActivity {
 
     /**
      * Request code for this activity. This code will be returned when the activity exits.
      * @see android.support.v4.app.FragmentActivity#startActivityForResult
      */
-    public static final int NEW_STUDENT_ACTIVITY_REQUEST_CODE = 1;
+    public static final int EDIT_STUDENT_ACTIVITY_REQUEST_CODE = 1;
 
     private StudentViewModel studentViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_student);
+        setContentView(R.layout.activity_edit_student);
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
 
-        FloatingActionButton doneFAB = findViewById(R.id.new_student_form_done_fab);
+        FloatingActionButton doneFAB = findViewById(R.id.edit_student_form_done_fab);
         doneFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                Student student = NewStudentActivity.this.createStudentFromInputData();
+                Student student = EditStudentActivity.this.editStudentFromInputData();
 
                 if (student == null) {
                     //TODO remover esse toast e marcar os required na tela
@@ -58,7 +58,7 @@ public class NewStudentActivity extends AppCompatActivity {
      * Generates a {@link Student} using UI input data.
      * @return The {@link Student} object. If required fields are empty, the return will be null.
      */
-    private Student createStudentFromInputData() {
+    private Student editStudentFromInputData() {
         String name = ((EditText) findViewById(R.id.name)).getText().toString();
         String email = ((EditText) findViewById(R.id.mail)).getText().toString();
         String address = ((EditText) findViewById(R.id.address)).getText().toString();

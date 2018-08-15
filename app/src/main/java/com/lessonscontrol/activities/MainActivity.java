@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         newStudentFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent newStudentActivityIntent = new Intent(MainActivity.this, NewStudentActivity.class);
-                MainActivity.this.startActivityForResult(newStudentActivityIntent, NewStudentActivity.NEW_STUDENT_ACTIVITY_REQUEST_CODE);
+                Intent newStudentActivityIntent = new Intent(MainActivity.this, EditStudentActivity.class);
+                MainActivity.this.startActivityForResult(newStudentActivityIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
             }
         });
 

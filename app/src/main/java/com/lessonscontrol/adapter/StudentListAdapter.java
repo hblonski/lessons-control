@@ -52,33 +52,34 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     @Override
     public void onBindViewHolder(StudentViewHolder studentViewHolder, int position) {
         if (this.students != null) {
-            Student current = this.students.get(position);
+            final Student current = this.students.get(position);
             studentViewHolder.nameView.setText(current.getName());
             //TODO colocar a data da proxima aula
             studentViewHolder.nextClassView.setText("DUMMY");
+
+            //Opens the ViewStudentActivity on click.
+            studentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MainActivity mainActivity = (MainActivity) v.getContext();
+                    Intent viewStudentIntent = new Intent(mainActivity, ViewStudentActivity.class);
+                    viewStudentIntent.putExtra(Student.STUDENT_EXTRA_KEY, current);
+                    mainActivity.startActivityForResult(viewStudentIntent, ViewStudentActivity.VIEW_STUDENT_ACTIVITY_REQUEST_CODE);
+                }
+            });
         } else {
             // Covers the case of data not being ready yet.
             studentViewHolder.nameView.setText("Data not ready.");
         }
-
-        //Opens the ViewStudentActivity on click.
-        studentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                MainActivity mainActivity = (MainActivity) v.getContext();
-                Intent viewStudentIntent = new Intent(mainActivity, ViewStudentActivity.class);
-                mainActivity.startActivityForResult(viewStudentIntent, ViewStudentActivity.VIEW_STUDENT_ACTIVITY_REQUEST_CODE);
-            }
-        });
     }
 
-    public void setStudents(List<Student> students){
+    public void setStudents(List<Student> students) {
         this.students = students;
         notifyDataSetChanged();
     }
 
     // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
+    // students has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
         if (this.students != null)

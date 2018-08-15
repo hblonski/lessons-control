@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.lessonscontrol.activities.NewStudentActivity"
+    tools:context="com.lessonscontrol.activities.EditStudentActivity"
     android:background="@android:color/white">
 
     <include layout="@layout/new_student_form" />
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/new_student_form_done_fab"
+        android:id="@+id/edit_student_form_done_fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
