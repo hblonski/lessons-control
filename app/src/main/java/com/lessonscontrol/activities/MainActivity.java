@@ -19,11 +19,10 @@ import java.util.List;
 
 /**
  * Main activity.
+ *
  * @author hblonski
  */
 public class MainActivity extends AppCompatActivity {
-
-    private static final int NEW_STUDENT_ACTIVITY_REQUEST_CODE = 1;
 
     private StudentViewModel studentViewModel;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent newStudentActivityIntent = new Intent(MainActivity.this, NewStudentActivity.class);
-                MainActivity.this.startActivityForResult(newStudentActivityIntent, NEW_STUDENT_ACTIVITY_REQUEST_CODE);
+                MainActivity.this.startActivityForResult(newStudentActivityIntent, NewStudentActivity.NEW_STUDENT_ACTIVITY_REQUEST_CODE);
             }
         });
 

@@ -1,6 +1,7 @@
 package com.lessonscontrol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.lessonscontrol.activities.MainActivity;
 import com.lessonscontrol.activities.R;
+import com.lessonscontrol.activities.ViewStudentActivity;
 import com.lessonscontrol.data.entities.Student;
 
 import java.util.List;
@@ -57,6 +60,16 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
             // Covers the case of data not being ready yet.
             studentViewHolder.nameView.setText("Data not ready.");
         }
+
+        //Opens the ViewStudentActivity on click.
+        studentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity mainActivity = (MainActivity) v.getContext();
+                Intent viewStudentIntent = new Intent(mainActivity, ViewStudentActivity.class);
+                mainActivity.startActivityForResult(viewStudentIntent, ViewStudentActivity.VIEW_STUDENT_ACTIVITY_REQUEST_CODE);
+            }
+        });
     }
 
     public void setStudents(List<Student> students){

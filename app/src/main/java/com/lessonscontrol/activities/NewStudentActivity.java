@@ -18,6 +18,12 @@ import com.lessonscontrol.data.viewModel.StudentViewModel;
  */
 public class NewStudentActivity extends AppCompatActivity {
 
+    /**
+     * Request code for this activity. This code will be returned when the activity exits.
+     * @see android.support.v4.app.FragmentActivity#startActivityForResult
+     */
+    public static final int NEW_STUDENT_ACTIVITY_REQUEST_CODE = 1;
+
     private StudentViewModel studentViewModel;
 
     @Override
