@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.lessonscontrol.data.entities.Student;
 
@@ -23,6 +24,9 @@ public interface StudentDAO {
 
     @Delete
     void delete(Student student);
+
+    @Update
+    void update(Student student);
 
     @Query("SELECT * FROM student ORDER BY sdt_name ASC")
     LiveData<List<Student>> getAllStudents();

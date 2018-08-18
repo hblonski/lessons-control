@@ -34,4 +34,8 @@ public class StudentViewModel extends AndroidViewModel {
     public void insert(Student student) {
         this.studentRepository.insert(student);
     }
+
+    public void update(Student student) {
+        this.studentRepository.update(student);
+    }
 }

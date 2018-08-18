@@ -2,6 +2,7 @@ package com.lessonscontrol.data.repositories;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.arch.persistence.room.Update;
 import android.os.AsyncTask;
 
 import com.lessonscontrol.data.AppRoomDatabase;
@@ -35,6 +36,10 @@ public class StudentRepository {
         new InsertAsyncTask(studentDAO).execute(student);
     }
 
+    public void update(Student student) {
+        new UpdateAsyncTask(studentDAO).execute(student);
+    }
+
     private static class InsertAsyncTask extends AsyncTask<Student, Void, Void> {
 
         private StudentDAO studentDAO;
@@ -46,6 +51,21 @@ public class StudentRepository {
         @Override
         protected Void doInBackground(final Student... students) {
             studentDAO.insert(students[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateAsyncTask extends AsyncTask<Student, Void, Void> {
+
+        private StudentDAO studentDAO;
+
+        UpdateAsyncTask(StudentDAO studentDAO) {
+            this.studentDAO = studentDAO;
+        }
+
+        @Override
+        protected Void doInBackground(final Student... students) {
+            studentDAO.update(students[0]);
             return null;
         }
     }

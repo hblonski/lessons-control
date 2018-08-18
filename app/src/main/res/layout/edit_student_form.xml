@@ -20,7 +20,7 @@
                 android:padding="16dp">
 
                 <EditText
-                    android:id="@+id/name"
+                    android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
@@ -36,7 +36,7 @@
                 android:padding="16dp">
 
                 <EditText
-                    android:id="@+id/mail"
+                    android:id="@+id/edit_mail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/mail"
@@ -52,7 +52,7 @@
                 android:padding="16dp">
 
                 <EditText
-                    android:id="@+id/phone"
+                    android:id="@+id/edit_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:digits="0123456789+"
@@ -70,7 +70,7 @@
                 android:padding="16dp">
 
                 <EditText
-                    android:id="@+id/address"
+                    android:id="@+id/edit_address"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/address"

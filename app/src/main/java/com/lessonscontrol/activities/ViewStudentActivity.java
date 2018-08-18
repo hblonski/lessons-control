@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.lessonscontrol.data.entities.Student;
 
 import java.security.InvalidParameterException;
-import java.util.InvalidPropertiesFormatException;
 
 
 public class ViewStudentActivity extends AppCompatActivity {
@@ -37,19 +36,31 @@ public class ViewStudentActivity extends AppCompatActivity {
             throw new InvalidParameterException(invalidParameterMessage);
         }
 
-        this.populateViewWithStudentInfo();
+        this.populateActivityWithStudentInfo();
 
         FloatingActionButton fab = findViewById(R.id.edit_student_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent editStudentInfoIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
+                editStudentInfoIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
                 ViewStudentActivity.this.startActivityForResult(editStudentInfoIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
             }
         });
     }
 
-    private void populateViewWithStudentInfo() {
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        //Updates the screen if the EditStudentActivity returns success (student updated)
+        if (requestCode == EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            this.student = data.getParcelableExtra(Student.STUDENT_EXTRA_KEY);
+            this.populateActivityWithStudentInfo();
+        }
+    }
+
+    private void populateActivityWithStudentInfo() {
         ((TextView) findViewById(R.id.view_name)).setText(student.getName());
         ((TextView) findViewById(R.id.view_phone)).setText(student.getPhone());
         ((TextView) findViewById(R.id.view_mail)).setText(student.getEmail());
