@@ -45,7 +45,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.student_card, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.student_details_card, parent, false);
         return new StudentViewHolder(itemView);
     }
 
