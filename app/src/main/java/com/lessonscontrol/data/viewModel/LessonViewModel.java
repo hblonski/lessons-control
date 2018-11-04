@@ -7,7 +7,6 @@ import android.arch.lifecycle.LiveData;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.repositories.LessonRepository;
-import com.lessonscontrol.data.repositories.StudentRepository;
 
 import java.util.List;
 
@@ -19,8 +18,6 @@ import java.util.List;
 public class LessonViewModel extends AndroidViewModel {
 
     private LessonRepository lessonRepository;
-
-    private LiveData<List<Lesson>> lessons;
 
     public LessonViewModel(Application application) {
         super(application);

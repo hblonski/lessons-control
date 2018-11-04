@@ -25,7 +25,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
             android:name=".ViewStudentActivity"
-            android:label="@string/title_activity_view_student"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

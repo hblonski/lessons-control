@@ -7,7 +7,7 @@
     <string name="mail">E-mail</string>
     <string name="address">Address</string>
     <string name="phone">Phone</string>
-    <string name="title_activity_view_student">ViewStudentActivity</string>
+    <string name="student_info">Student info</string>
 
     <!-- Lesson -->
     <string name="type">Type</string>
