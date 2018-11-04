@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.lessonscontrol.data.entities.Student;
@@ -63,6 +64,16 @@ public class EditStudentActivity extends AppCompatActivity {
                 }
             }
         });
+
+        ImageButton addLessonButton = findViewById(R.id.button_add_lesson);
+        addLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newLessonIntent = new Intent(EditStudentActivity.this, EditLessonActivity.class);
+                EditStudentActivity.this.startActivityForResult(newLessonIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
     }
 
     private void populateActivityWithStudentInfo() {

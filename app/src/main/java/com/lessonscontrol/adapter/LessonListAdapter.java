@@ -1,7 +1,6 @@
 package com.lessonscontrol.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,11 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lessonscontrol.activities.MainActivity;
 import com.lessonscontrol.activities.R;
-import com.lessonscontrol.activities.ViewStudentActivity;
 import com.lessonscontrol.data.entities.Lesson;
-import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.utils.FormatUtil;
 
 import java.util.List;
@@ -53,7 +49,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
     @NonNull
     @Override
     public LessonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.lesson_card, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.lesson_details_card, parent, false);
         return new LessonViewHolder(itemView);
     }
 
