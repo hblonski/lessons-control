@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:theme="@style/InfoLabel"
                         android:text="@string/name"
-                        android:paddingTop="8dp"
+                        android:layout_marginTop="16dp"
                         android:paddingLeft="10dp"
                         android:paddingRight="8dp"/>
 
@@ -114,13 +114,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:theme="@style/Info"
-                        android:paddingLeft="10dp"/>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_margin="16dp"
-                        android:background="@color/light_gray" />
+                        android:paddingLeft="10dp"
+                        android:layout_marginBottom="16dp"/>
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

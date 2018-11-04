@@ -8,4 +8,11 @@
     <string name="mail">E-mail</string>
     <string name="address">Endereço</string>
     <string name="phone">Telefone</string>
+
+    <!-- Lesson -->
+    <string name="type">Tipo</string>
+    <string name="days">Dias</string>
+    <string name="next_class">Próxima aula</string>
+    <string name="next_payment">Próximo pagamento</string>
+    <string name="price">Preco</string>
 </resources>

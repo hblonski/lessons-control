@@ -30,6 +30,7 @@ public class Lesson {
     @ColumnInfo(name = "les_student")
     private long student;
 
+    //Days of week
     @ColumnInfo(name = "les_days")
     private String days;
 
@@ -43,12 +44,17 @@ public class Lesson {
     @ColumnInfo(name = "les_nextpayment")
     private long nextPayment;
 
-    public Lesson(long student, String days, Double price, String type, long nextPayment) {
+    //In milliseconds.
+    @ColumnInfo(name = "les_nextdate")
+    private long nextDate;
+
+    public Lesson(long student, String days, Double price, String type, long nextPayment, long nextDate) {
         this.student = student;
         this.days = days;
         this.price = price;
         this.type = type;
         this.nextPayment = nextPayment;
+        this.nextDate = nextDate;
     }
 
     @NonNull
@@ -98,5 +104,13 @@ public class Lesson {
 
     public void setNextPayment(long nextPayment) {
         this.nextPayment = nextPayment;
+    }
+
+    public long getNextDate() {
+        return this.nextDate;
+    }
+
+    public void setNextDate(long nextDate) {
+        this.nextDate = nextDate;
     }
 }

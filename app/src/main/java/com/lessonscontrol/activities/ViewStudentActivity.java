@@ -1,16 +1,27 @@
 package com.lessonscontrol.activities;
 
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.lessonscontrol.adapter.LessonListAdapter;
+import com.lessonscontrol.adapter.StudentListAdapter;
+import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
+import com.lessonscontrol.data.viewModel.LessonViewModel;
+import com.lessonscontrol.data.viewModel.StudentViewModel;
 
 import java.security.InvalidParameterException;
+import java.util.List;
 
 
 public class ViewStudentActivity extends AppCompatActivity {
@@ -23,10 +34,13 @@ public class ViewStudentActivity extends AppCompatActivity {
 
     private Student student;
 
+    private LessonViewModel lessonViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student);
+        this.lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel.class);
 
         this.student = this.getIntent().getParcelableExtra(Student.STUDENT_EXTRA_KEY);
 
@@ -38,6 +52,12 @@ public class ViewStudentActivity extends AppCompatActivity {
 
         this.populateActivityWithStudentInfo();
 
+        RecyclerView lessonsRecyclerView = findViewById(R.id.lessons_recycler_view);
+        final LessonListAdapter lessonListAdapter = new LessonListAdapter(this);
+        lessonsRecyclerView.setAdapter(lessonListAdapter);
+        lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        this.observeDataChange(lessonListAdapter);
+
         FloatingActionButton fab = findViewById(R.id.edit_student_fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +65,15 @@ public class ViewStudentActivity extends AppCompatActivity {
                 Intent editStudentInfoIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
                 editStudentInfoIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
                 ViewStudentActivity.this.startActivityForResult(editStudentInfoIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
+            }
+        });
+    }
+
+    private void observeDataChange(final LessonListAdapter lessonListAdapter) {
+        this.lessonViewModel.findLessonsByStudent(this.student).observe(this, new Observer<List<Lesson>>() {
+            @Override
+            public void onChanged(@Nullable List<Lesson> lessons) {
+                lessonListAdapter.setLessons(lessons);
             }
         });
     }
