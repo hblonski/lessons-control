@@ -9,6 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lessonscontrol.adapter.LessonListAdapter;
@@ -53,6 +55,16 @@ public class ViewStudentActivity extends AppCompatActivity {
         lessonsRecyclerView.setAdapter(lessonListAdapter);
         lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         this.observeDataChange(lessonListAdapter);
+
+        ImageButton editStudentButton = findViewById(R.id.button_edit_student);
+        editStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent editStudentActivityIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
+                editStudentActivityIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
+                ViewStudentActivity.this.startActivityForResult(editStudentActivityIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
+            }
+        });
     }
 
     private void observeDataChange(final LessonListAdapter lessonListAdapter) {

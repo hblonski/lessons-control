@@ -17,4 +17,11 @@
     <string name="next_payment">Próximo pagamento</string>
     <string name="price">Preço por aula</string>
     <string name="lessons">Aulas</string>
+    <string name="SUN">Domingo</string>
+    <string name="MON">Segunda-feira</string>
+    <string name="TUE">Terça-feira</string>
+    <string name="WED">Quarta-feira</string>
+    <string name="THU">Quinta-feira</string>
+    <string name="FRI">Sexta-feira</string>
+    <string name="SAT">Sábado</string>
 </resources>

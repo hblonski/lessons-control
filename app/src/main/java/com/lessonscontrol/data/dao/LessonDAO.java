@@ -5,6 +5,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import com.lessonscontrol.data.entities.Lesson;
 
@@ -24,6 +25,9 @@ public interface LessonDAO {
     @Delete
     void delete(Lesson lesson);
 
-    @Query("SELECT * FROM lesson WHERE les_student = :studentID ORDER BY les_type ASC")
+    @Update
+    void update(Lesson lesson);
+
+    @Query("SELECT * FROM lesson WHERE les_student = :studentID ORDER BY les_nextdate ASC")
     LiveData<List<Lesson>> findLessonsByStudent(long studentID);
 }

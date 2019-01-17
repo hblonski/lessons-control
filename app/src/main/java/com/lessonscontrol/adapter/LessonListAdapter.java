@@ -2,13 +2,16 @@ package com.lessonscontrol.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.lessonscontrol.activities.EditLessonActivity;
 import com.lessonscontrol.activities.R;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.utils.FormatUtil;
@@ -41,8 +44,6 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
             priceView = itemView.findViewById(R.id.view_price);
             //When the card is created, it is expanded, so we call this method to collapse it.
             expandOrCollapseCard();
-
-            Activity activity = (Activity) layoutInflater.getContext();
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -118,12 +119,25 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
     @Override
     public void onBindViewHolder(LessonViewHolder lessonViewHolder, int position) {
         if (this.lessons != null) {
+            final Activity context = (Activity) layoutInflater.getContext();
+
             final Lesson current = this.lessons.get(position);
             lessonViewHolder.typeView.setText(current.getType());
-            lessonViewHolder.daysView.setText(current.getDays());
+            context.getResources();
+            lessonViewHolder.daysView.setText(FormatUtil.formatWeekDayIDsForDisplay(current.getDays(), context.getResources(), context.getPackageName()));
             lessonViewHolder.nextClassView.setText(FormatUtil.convertDateToString(current.getNextDate()));
             lessonViewHolder.nextPaymentView.setText(FormatUtil.convertDateToString(current.getNextPayment()));
             lessonViewHolder.priceView.setText(FormatUtil.convertDoubleToMoney(current.getPrice()));
+
+            ImageButton editButton = lessonViewHolder.lessonItemView.findViewById(R.id.button_edit_lesson);
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent editLessonActivityIntent = new Intent(layoutInflater.getContext(), EditLessonActivity.class);
+                    editLessonActivityIntent.putExtra(Lesson.LESSON_EXTRA_KEY, current);
+                    context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
+                }
+            });
         } else {
             // Covers the case of data not being ready yet.
             lessonViewHolder.typeView.setText("Data not ready.");

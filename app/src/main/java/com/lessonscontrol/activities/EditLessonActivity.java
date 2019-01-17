@@ -43,14 +43,19 @@ public class EditLessonActivity extends AppCompatActivity {
         EditText priceInput = findViewById(R.id.edit_price);
         priceInput.addTextChangedListener(new MoneyTextWatcher(priceInput));
 
+        Object receivedLesson = this.getIntent().getExtras().get(Lesson.LESSON_EXTRA_KEY);
+        if (receivedLesson != null) {
+            lesson = (Lesson) receivedLesson;
+            populateViewWithReceivedLessonInfo();
+        }
+
         FloatingActionButton doneFAB = findViewById(R.id.edit_lesson_form_done_fab);
         doneFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent resultIntent = new Intent();
                 try {
-                    createLessonFromActivityData();
-                    resultIntent.putExtra(Lesson.LESSON_EXTRA_KEY, lesson);
+                    createOrUpdateLessonFromActivityData();
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 } catch (InvalidParameterException e) {
@@ -66,7 +71,17 @@ public class EditLessonActivity extends AppCompatActivity {
         });
     }
 
-    private void createLessonFromActivityData() throws InvalidParameterException {
+    private void populateViewWithReceivedLessonInfo() {
+        ((EditText) findViewById(R.id.edit_type)).setText(lesson.getType());
+
+        String price = String.format("$%s", FormatUtil.convertDoubleToMoney(lesson.getPrice()));
+        ((EditText) findViewById(R.id.edit_price)).setText(price);
+
+        MaterialDayPicker materialDayPicker = findViewById(R.id.edit_days);
+        materialDayPicker.setSelectedDays(FormatUtil.convertStringToMaterialDayPickerList(lesson.getDays()));
+    }
+
+    private void createOrUpdateLessonFromActivityData() throws InvalidParameterException {
         String type = ((EditText) findViewById(R.id.edit_type)).getText().toString();
         MaterialDayPicker materialDayPicker = findViewById(R.id.edit_days);
         List<MaterialDayPicker.Weekday> daysSelected = materialDayPicker.getSelectedDays();
@@ -84,7 +99,14 @@ public class EditLessonActivity extends AppCompatActivity {
         long studentId = this.getIntent().getExtras().getLong(STUDENT_ID_KEY);
 
         //TODO nextPayment e nextDate
-        this.lesson = new Lesson(studentId, daysOfWeek, price, type, 0, 0);
-        lessonViewModel.insert(this.lesson);
+        if (lesson == null) {
+            lesson = new Lesson(studentId, daysOfWeek, price, type, 0, 0);
+            lessonViewModel.insert(lesson);
+        } else {
+            lesson.setDays(daysOfWeek);
+            lesson.setPrice(price);
+            lesson.setType(type);
+            lessonViewModel.update(lesson);
+        }
     }
 }

@@ -28,6 +28,10 @@ public class LessonViewModel extends AndroidViewModel {
         this.lessonRepository.insert(lesson);
     }
 
+    public void update(Lesson lesson) {
+        this.lessonRepository.update(lesson);
+    }
+
     public LiveData<List<Lesson>> findLessonsByStudent(Student student) {
         return this.lessonRepository.findLessonsByStudent(student);
     }

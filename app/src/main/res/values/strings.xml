@@ -16,5 +16,12 @@
     <string name="next_payment">Next payment</string>
     <string name="price">Price per lesson</string>
     <string name="lessons">Lessons</string>
+    <string name="SUN">Sunday</string>
+    <string name="MON">Monday</string>
+    <string name="TUE">Tuesday</string>
+    <string name="WED">Wednesday</string>
+    <string name="THU">Thursday</string>
+    <string name="FRI">Friday</string>
+    <string name="SAT">Saturday</string>
 
 </resources>

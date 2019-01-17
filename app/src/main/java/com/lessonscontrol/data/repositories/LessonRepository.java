@@ -6,7 +6,6 @@ import android.os.AsyncTask;
 
 import com.lessonscontrol.data.AppRoomDatabase;
 import com.lessonscontrol.data.dao.LessonDAO;
-import com.lessonscontrol.data.dao.StudentDAO;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
 
@@ -32,6 +31,10 @@ public class LessonRepository {
         new InsertAsyncTask(lessonDAO).execute(lesson);
     }
 
+    public void update(Lesson lesson) {
+        new UpdateAsyncTask(lessonDAO).execute(lesson);
+    }
+
     public LiveData<List<Lesson>> findLessonsByStudent(Student student) {
         lessons = lessonDAO.findLessonsByStudent(student.getID());
         return lessons;
@@ -48,6 +51,21 @@ public class LessonRepository {
         @Override
         protected Void doInBackground(final Lesson... lessons) {
             lessonDAO.insert(lessons[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateAsyncTask extends AsyncTask<Lesson, Void, Void> {
+
+        private LessonDAO lessonDAO;
+
+        UpdateAsyncTask(LessonDAO lessonDAO) {
+            this.lessonDAO = lessonDAO;
+        }
+
+        @Override
+        protected Void doInBackground(final Lesson... lessons) {
+            lessonDAO.update(lessons[0]);
             return null;
         }
     }
