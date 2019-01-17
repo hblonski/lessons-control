@@ -24,6 +24,6 @@ public interface LessonDAO {
     @Delete
     void delete(Lesson lesson);
 
-    @Query("SELECT * FROM lesson WHERE les_id = :studentID ORDER BY les_type ASC")
+    @Query("SELECT * FROM lesson WHERE les_student = :studentID ORDER BY les_type ASC")
     LiveData<List<Lesson>> findLessonsByStudent(long studentID);
 }
