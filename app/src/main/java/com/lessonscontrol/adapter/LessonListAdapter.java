@@ -7,11 +7,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lessonscontrol.activities.R;
-import com.lessonscontrol.activities.ViewStudentActivity;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.utils.FormatUtil;
 
@@ -45,12 +43,6 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
             expandOrCollapseCard();
 
             Activity activity = (Activity) layoutInflater.getContext();
-
-            //Hides the edit button if inside ViewStudentActivity
-            if (activity instanceof ViewStudentActivity) {
-                ImageButton editButton = itemView.findViewById(R.id.button_edit_lesson);
-                editButton.setVisibility(View.GONE);
-            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

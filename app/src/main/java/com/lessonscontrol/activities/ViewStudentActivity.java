@@ -5,12 +5,10 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import com.lessonscontrol.adapter.LessonListAdapter;
@@ -19,7 +17,6 @@ import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.viewModel.LessonViewModel;
 
 import java.security.InvalidParameterException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -56,19 +53,6 @@ public class ViewStudentActivity extends AppCompatActivity {
         lessonsRecyclerView.setAdapter(lessonListAdapter);
         lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         this.observeDataChange(lessonListAdapter);
-
-        FloatingActionButton fab = findViewById(R.id.edit_student_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent editStudentInfoIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
-                editStudentInfoIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
-                ArrayList<Lesson> lessons = new ArrayList<>();
-                lessons.addAll(lessonListAdapter.getLessons());
-                editStudentInfoIntent.putParcelableArrayListExtra(Lesson.LESSON_LIST_EXTRA_KEY, lessons);
-                ViewStudentActivity.this.startActivityForResult(editStudentInfoIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
-            }
-        });
     }
 
     private void observeDataChange(final LessonListAdapter lessonListAdapter) {
