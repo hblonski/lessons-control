@@ -48,4 +48,6 @@ dependencies {
     // Lifecycle components
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
+    //Day of week picker
+    implementation 'ca.antonious:materialdaypicker:0.4.0'
 }

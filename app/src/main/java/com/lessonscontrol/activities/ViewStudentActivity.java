@@ -14,11 +14,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lessonscontrol.adapter.LessonListAdapter;
-import com.lessonscontrol.adapter.StudentListAdapter;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.viewModel.LessonViewModel;
-import com.lessonscontrol.data.viewModel.StudentViewModel;
 
 import java.security.InvalidParameterException;
 import java.util.List;

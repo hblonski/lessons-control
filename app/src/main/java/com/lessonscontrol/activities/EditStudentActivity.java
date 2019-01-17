@@ -70,6 +70,7 @@ public class EditStudentActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent newLessonIntent = new Intent(EditStudentActivity.this, EditLessonActivity.class);
+                newLessonIntent.putExtra(EditLessonActivity.STUDENT_ID_KEY, student.getID());
                 EditStudentActivity.this.startActivityForResult(newLessonIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
             }
         });

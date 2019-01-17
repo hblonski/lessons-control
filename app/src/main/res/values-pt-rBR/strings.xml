@@ -15,6 +15,6 @@
     <string name="days">Dias</string>
     <string name="next_class">Próxima aula</string>
     <string name="next_payment">Próximo pagamento</string>
-    <string name="price">Preco</string>
+    <string name="price">Preço por aula</string>
     <string name="lessons">Aulas</string>
 </resources>

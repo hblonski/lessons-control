@@ -11,10 +11,10 @@
 
     <!-- Lesson -->
     <string name="type">Type</string>
-    <string name="days">Days</string>
+    <string name="days">Schedule</string>
     <string name="next_class">Next class</string>
     <string name="next_payment">Next payment</string>
-    <string name="price">Price</string>
+    <string name="price">Price per lesson</string>
     <string name="lessons">Lessons</string>
 
 </resources>
