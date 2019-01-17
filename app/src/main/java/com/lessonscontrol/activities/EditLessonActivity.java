@@ -78,7 +78,8 @@ public class EditLessonActivity extends AppCompatActivity {
             throw new InvalidParameterException("Lesson schedule is missing.");
         }
 
-        Double price = Double.valueOf(((EditText) findViewById(R.id.edit_price)).getText().toString());
+        String value = ((EditText) findViewById(R.id.edit_price)).getText().toString().replace("$", "");
+        Double price = Double.valueOf(value);
         String daysOfWeek = FormatUtil.convertMaterialDayPickerListToString(daysSelected);
         long studentId = this.getIntent().getExtras().getLong(STUDENT_ID_KEY);
 
