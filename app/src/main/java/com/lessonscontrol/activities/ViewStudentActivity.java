@@ -65,6 +65,16 @@ public class ViewStudentActivity extends AppCompatActivity {
                 ViewStudentActivity.this.startActivityForResult(editStudentActivityIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        ImageButton addLessonButton = findViewById(R.id.button_add_lesson);
+        addLessonButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newLessonIntent = new Intent(ViewStudentActivity.this, EditLessonActivity.class);
+                newLessonIntent.putExtra(EditLessonActivity.STUDENT_ID_KEY, student.getID());
+                ViewStudentActivity.this.startActivityForResult(newLessonIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
+            }
+        });
     }
 
     private void observeDataChange(final LessonListAdapter lessonListAdapter) {

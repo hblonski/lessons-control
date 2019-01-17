@@ -24,4 +24,6 @@
     <string name="THU">Quinta-feira</string>
     <string name="FRI">Sexta-feira</string>
     <string name="SAT">Sábado</string>
+    <string name="lesson_info">Informações da aula</string>
+    <string name="student_lessons">Aulas do estudante</string>
 </resources>
