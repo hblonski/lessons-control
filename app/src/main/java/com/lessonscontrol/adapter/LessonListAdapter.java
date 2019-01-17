@@ -1,14 +1,17 @@
 package com.lessonscontrol.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lessonscontrol.activities.R;
+import com.lessonscontrol.activities.ViewStudentActivity;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.utils.FormatUtil;
 
@@ -40,6 +43,14 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
             priceView = itemView.findViewById(R.id.view_price);
             //When the card is created, it is expanded, so we call this method to collapse it.
             expandOrCollapseCard();
+
+            Activity activity = (Activity) layoutInflater.getContext();
+
+            //Hides the edit button if inside ViewStudentActivity
+            if (activity instanceof ViewStudentActivity) {
+                ImageButton editButton = itemView.findViewById(R.id.button_edit_lesson);
+                editButton.setVisibility(View.GONE);
+            }
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,6 +141,10 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
     public void setLessons(List<Lesson> lessons) {
         this.lessons = lessons;
         notifyDataSetChanged();
+    }
+
+    public List<Lesson> getLessons() {
+        return this.lessons;
     }
 
     // getItemCount() is called many times, and when it is first called,

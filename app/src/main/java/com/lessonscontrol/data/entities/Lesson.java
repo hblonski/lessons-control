@@ -9,8 +9,6 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import ca.antonious.materialdaypicker.MaterialDayPicker;
-
 import static android.arch.persistence.room.ForeignKey.CASCADE;
 
 /**
@@ -28,6 +26,7 @@ public class Lesson implements Parcelable {
 
     //Used when passing an student between activities.
     public static final String LESSON_EXTRA_KEY = "lesson";
+    public static final String LESSON_LIST_EXTRA_KEY = "lessons";
 
     @PrimaryKey(autoGenerate = true)
     @NonNull

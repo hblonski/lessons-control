@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.lessonscontrol.adapter.LessonListAdapter;
+import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.viewModel.StudentViewModel;
 
@@ -65,6 +69,12 @@ public class EditStudentActivity extends AppCompatActivity {
             }
         });
 
+        RecyclerView lessonsRecyclerView = findViewById(R.id.lessons_recycler_view);
+        final LessonListAdapter lessonListAdapter = new LessonListAdapter(this);
+        lessonsRecyclerView.setAdapter(lessonListAdapter);
+        lessonsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        lessonListAdapter.setLessons(this.getIntent().<Lesson>getParcelableArrayListExtra(Lesson.LESSON_LIST_EXTRA_KEY));
+
         ImageButton addLessonButton = findViewById(R.id.button_add_lesson);
         addLessonButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +84,6 @@ public class EditStudentActivity extends AppCompatActivity {
                 EditStudentActivity.this.startActivityForResult(newLessonIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
             }
         });
-
     }
 
     private void populateActivityWithStudentInfo() {
@@ -83,7 +92,6 @@ public class EditStudentActivity extends AppCompatActivity {
         ((EditText) findViewById(R.id.edit_mail)).setText(student.getEmail());
         ((EditText) findViewById(R.id.edit_address)).setText(student.getAddress());
     }
-
 
     /**
      * Updates the activity {@link Student} or, if it is null, creates a new one using UI input data.

@@ -77,6 +77,16 @@
                     android:layout_marginRight="16dp"
                     android:background="@color/light_gray" />
 
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/lessons_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/lesson_details_card"></android.support.v7.widget.RecyclerView>
+                </ScrollView>
+
                 <ImageButton
                     android:id="@+id/button_add_lesson"
                     android:layout_width="30dp"

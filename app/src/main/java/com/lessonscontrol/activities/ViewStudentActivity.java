@@ -19,6 +19,7 @@ import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.viewModel.LessonViewModel;
 
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -62,6 +63,9 @@ public class ViewStudentActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent editStudentInfoIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
                 editStudentInfoIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
+                ArrayList<Lesson> lessons = new ArrayList<>();
+                lessons.addAll(lessonListAdapter.getLessons());
+                editStudentInfoIntent.putParcelableArrayListExtra(Lesson.LESSON_LIST_EXTRA_KEY, lessons);
                 ViewStudentActivity.this.startActivityForResult(editStudentInfoIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
             }
         });
