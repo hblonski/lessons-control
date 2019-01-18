@@ -26,7 +26,8 @@ public class Lesson implements Parcelable {
 
     //Used when passing an student between activities.
     public static final String LESSON_EXTRA_KEY = "lesson";
-    public static final String LESSON_LIST_EXTRA_KEY = "lessons";
+
+    public static final long NO_DATE_SELECTED = -1;
 
     @PrimaryKey(autoGenerate = true)
     @NonNull

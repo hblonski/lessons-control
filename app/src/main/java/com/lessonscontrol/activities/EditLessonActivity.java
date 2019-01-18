@@ -14,8 +14,11 @@ import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.viewModel.LessonViewModel;
 import com.lessonscontrol.utils.FormatUtil;
 import com.lessonscontrol.utils.MoneyTextWatcher;
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.security.InvalidParameterException;
+import java.util.Date;
 import java.util.List;
 
 import ca.antonious.materialdaypicker.MaterialDayPicker;
@@ -79,6 +82,16 @@ public class EditLessonActivity extends AppCompatActivity {
 
         MaterialDayPicker materialDayPicker = findViewById(R.id.edit_days);
         materialDayPicker.setSelectedDays(FormatUtil.convertStringToMaterialDayPickerList(lesson.getDays()));
+
+        long nextClassDate = lesson.getNextDate();
+        if (nextClassDate != Lesson.NO_DATE_SELECTED) {
+            ((MaterialCalendarView) findViewById(R.id.edit_next_class)).setSelectedDate(new Date(nextClassDate));
+        }
+
+        long nextPaymentDate = lesson.getNextPayment();
+        if (nextPaymentDate != Lesson.NO_DATE_SELECTED) {
+            ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).setSelectedDate(new Date());
+        }
     }
 
     private void createOrUpdateLessonFromActivityData() throws InvalidParameterException {
@@ -94,18 +107,32 @@ public class EditLessonActivity extends AppCompatActivity {
         }
 
         String value = ((EditText) findViewById(R.id.edit_price)).getText().toString().replace("$", "");
+
+        if (value == null || value.isEmpty()) {
+            throw new InvalidParameterException("Lesson price is missing.");
+        }
+
         Double price = Double.valueOf(value);
         String daysOfWeek = FormatUtil.convertMaterialDayPickerListToString(daysSelected);
         long studentId = this.getIntent().getExtras().getLong(STUDENT_ID_KEY);
 
-        //TODO nextPayment e nextDate
+        CalendarDay nextClassSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_class)).getSelectedDate();
+        Date nextClassDate = nextClassSelectedDate != null ? nextClassSelectedDate.getDate() : null;
+        long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : Lesson.NO_DATE_SELECTED;
+
+        CalendarDay nextPaymentSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).getSelectedDate();
+        Date nextPaymentDate = nextPaymentSelectedDate != null ? nextPaymentSelectedDate.getDate() : null;
+        long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : Lesson.NO_DATE_SELECTED;
+
         if (lesson == null) {
-            lesson = new Lesson(studentId, daysOfWeek, price, type, 0, 0);
+            lesson = new Lesson(studentId, daysOfWeek, price, type, nextPaymentDateAsMillis, nextClassDateAsMillis);
             lessonViewModel.insert(lesson);
         } else {
             lesson.setDays(daysOfWeek);
             lesson.setPrice(price);
             lesson.setType(type);
+            lesson.setNextDate(nextClassDateAsMillis);
+            lesson.setNextPayment(nextPaymentDateAsMillis);
             lessonViewModel.update(lesson);
         }
     }

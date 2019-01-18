@@ -50,4 +50,6 @@ dependencies {
     annotationProcessor "android.arch.lifecycle:compiler:$lifecycle_version"
     //Day of week picker
     implementation 'ca.antonious:materialdaypicker:0.4.0'
+    //DateTime Picker
+    implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
 }

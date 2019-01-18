@@ -25,5 +25,6 @@
     <string name="SAT">Saturday</string>
     <string name="lesson_info">Lesson info</string>
     <string name="student_lessons">Student Lessons</string>
+    <string name="no_date_selected">No date selected.</string>
 
 </resources>
