@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ViewStudentActivity"
+    android:background="@color/light_gray_background"
     tools:showIn="@layout/activity_view_student">
 
     <LinearLayout
@@ -39,7 +40,8 @@
                         android:layout_marginTop="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="5dp"
-                        android:text="@string/student_info" />
+                        android:text="@string/student_info"
+                        android:theme="@style/LabelPrimary"/>
 
                     <ImageButton
                         android:id="@+id/button_edit_student"

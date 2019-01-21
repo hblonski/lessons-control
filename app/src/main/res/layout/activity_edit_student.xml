@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lessonscontrol.activities.EditStudentActivity"
-    android:background="@android:color/white">
+    android:background="@color/light_gray_background">
 
     <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
     <LinearLayout

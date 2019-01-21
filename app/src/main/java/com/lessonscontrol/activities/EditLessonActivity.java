@@ -107,7 +107,6 @@ public class EditLessonActivity extends AppCompatActivity {
         }
 
         String value = ((EditText) findViewById(R.id.edit_price)).getText().toString().replace("$", "");
-
         if (value == null || value.isEmpty()) {
             throw new InvalidParameterException("Lesson price is missing.");
         }

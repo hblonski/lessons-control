@@ -114,7 +114,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
-                        app:mcv_selectionColor="@color/colorAccent"
+                        app:mcv_selectionColor="@color/colorAccentYellow"
                         />
                 </LinearLayout>
 
@@ -148,7 +148,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
-                        app:mcv_selectionColor="@color/colorAccent"
+                        app:mcv_selectionColor="@color/colorAccentYellow"
                         />
                 </LinearLayout>
 
