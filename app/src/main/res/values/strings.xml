@@ -26,5 +26,6 @@
     <string name="lesson_info">Lesson info</string>
     <string name="student_lessons">Student Lessons</string>
     <string name="no_date_selected">No date selected.</string>
+    <string name="no_date_selected_lowercase">no date selected.</string>
 
 </resources>

@@ -25,14 +25,14 @@ public class LessonViewModel extends AndroidViewModel {
     }
 
     public void insert(Lesson lesson) {
-        this.lessonRepository.insert(lesson);
+        lessonRepository.insert(lesson);
     }
 
     public void update(Lesson lesson) {
-        this.lessonRepository.update(lesson);
+        lessonRepository.update(lesson);
     }
 
     public LiveData<List<Lesson>> findLessonsByStudent(Student student) {
-        return this.lessonRepository.findLessonsByStudent(student);
+        return lessonRepository.findLessonsByStudent(student);
     }
 }

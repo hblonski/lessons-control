@@ -83,13 +83,13 @@ public class EditLessonActivity extends AppCompatActivity {
         MaterialDayPicker materialDayPicker = findViewById(R.id.edit_days);
         materialDayPicker.setSelectedDays(FormatUtil.convertStringToMaterialDayPickerList(lesson.getDays()));
 
-        long nextClassDate = lesson.getNextDate();
-        if (nextClassDate != Lesson.NO_DATE_SELECTED) {
+        Long nextClassDate = lesson.getNextDate();
+        if (nextClassDate != null) {
             ((MaterialCalendarView) findViewById(R.id.edit_next_class)).setSelectedDate(new Date(nextClassDate));
         }
 
-        long nextPaymentDate = lesson.getNextPayment();
-        if (nextPaymentDate != Lesson.NO_DATE_SELECTED) {
+        Long nextPaymentDate = lesson.getNextPayment();
+        if (nextPaymentDate != null) {
             ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).setSelectedDate(new Date());
         }
     }
@@ -117,11 +117,11 @@ public class EditLessonActivity extends AppCompatActivity {
 
         CalendarDay nextClassSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_class)).getSelectedDate();
         Date nextClassDate = nextClassSelectedDate != null ? nextClassSelectedDate.getDate() : null;
-        long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : Lesson.NO_DATE_SELECTED;
+        long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : null;
 
         CalendarDay nextPaymentSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).getSelectedDate();
         Date nextPaymentDate = nextPaymentSelectedDate != null ? nextPaymentSelectedDate.getDate() : null;
-        long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : Lesson.NO_DATE_SELECTED;
+        long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : null;
 
         if (lesson == null) {
             lesson = new Lesson(studentId, daysOfWeek, price, type, nextPaymentDateAsMillis, nextClassDateAsMillis);

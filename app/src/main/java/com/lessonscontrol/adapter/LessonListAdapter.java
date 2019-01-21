@@ -129,12 +129,12 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
             lessonViewHolder.daysView.setText(FormatUtil.formatWeekDayIDsForDisplay(current.getDays(), resources, context.getPackageName()));
 
             String noDateSelected = resources.getString(R.string.no_date_selected);
-            long nextClassDate = current.getNextDate();
-            String nextClassDateAsString = nextClassDate != Lesson.NO_DATE_SELECTED ? FormatUtil.convertDateToString(nextClassDate) : noDateSelected;
+            Long nextClassDate = current.getNextDate();
+            String nextClassDateAsString = nextClassDate != null ? FormatUtil.convertDateToString(nextClassDate) : noDateSelected;
             lessonViewHolder.nextClassView.setText(nextClassDateAsString);
 
-            long nextPaymentDate = current.getNextPayment();
-            String nextClassPaymentAsString = nextPaymentDate != Lesson.NO_DATE_SELECTED ? FormatUtil.convertDateToString(nextPaymentDate) : noDateSelected;
+            Long nextPaymentDate = current.getNextPayment();
+            String nextClassPaymentAsString = nextPaymentDate != null ? FormatUtil.convertDateToString(nextPaymentDate) : noDateSelected;
             lessonViewHolder.nextPaymentView.setText(nextClassPaymentAsString);
 
             lessonViewHolder.priceView.setText(FormatUtil.convertDoubleToMoney(current.getPrice()));

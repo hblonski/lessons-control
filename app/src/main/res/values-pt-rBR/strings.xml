@@ -27,4 +27,5 @@
     <string name="lesson_info">Informações da aula</string>
     <string name="student_lessons">Aulas do estudante</string>
     <string name="no_date_selected">Sem data selecionada.</string>
+    <string name="no_date_selected_lowercase">sem data selecionada.</string>
 </resources>

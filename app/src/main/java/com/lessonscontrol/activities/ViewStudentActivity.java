@@ -17,6 +17,7 @@ import com.lessonscontrol.adapter.LessonListAdapter;
 import com.lessonscontrol.data.entities.Lesson;
 import com.lessonscontrol.data.entities.Student;
 import com.lessonscontrol.data.viewModel.LessonViewModel;
+import com.lessonscontrol.data.viewModel.StudentViewModel;
 
 import java.security.InvalidParameterException;
 import java.util.List;
@@ -34,11 +35,14 @@ public class ViewStudentActivity extends AppCompatActivity {
 
     private LessonViewModel lessonViewModel;
 
+    private StudentViewModel studentViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_student);
         this.lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel.class);
+        this.studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
 
         this.student = this.getIntent().getParcelableExtra(Student.STUDENT_EXTRA_KEY);
 
@@ -81,6 +85,15 @@ public class ViewStudentActivity extends AppCompatActivity {
         this.lessonViewModel.findLessonsByStudent(this.student).observe(this, new Observer<List<Lesson>>() {
             @Override
             public void onChanged(@Nullable List<Lesson> lessons) {
+                Long studentLessonDate = student.getNextLessonDate();
+                Long newNextLessonDate = null;
+                if (lessons != null && !lessons.isEmpty()) {
+                    newNextLessonDate = lessons.get(0).getNextDate();
+                }
+                if (studentLessonDate != newNextLessonDate) {
+                    student.setNextLessonDate(newNextLessonDate);
+                    studentViewModel.update(student);
+                }
                 lessonListAdapter.setLessons(lessons);
             }
         });

@@ -16,7 +16,7 @@
             android:id="@+id/students_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/student_details_card"></android.support.v7.widget.RecyclerView>
+            tools:listitem="@layout/student_summary_card"></android.support.v7.widget.RecyclerView>
     </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

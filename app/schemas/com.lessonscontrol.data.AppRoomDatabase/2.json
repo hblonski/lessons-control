@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 2,
-    "identityHash": "69f222dabb085107d16f14d0c6222413",
+    "identityHash": "bef8f0ea5c8b08dd1234cd3ea1213e78",
     "entities": [
       {
         "tableName": "student",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sdt_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sdt_name` TEXT NOT NULL, `sdt_address` TEXT, `sdt_email` TEXT, `sdt_phone` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sdt_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sdt_name` TEXT NOT NULL, `sdt_address` TEXT, `sdt_email` TEXT, `sdt_phone` TEXT, `sdt_nextclassdate` INTEGER)",
         "fields": [
           {
             "fieldPath": "ID",
@@ -37,6 +37,12 @@
             "columnName": "sdt_phone",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "nextLessonDate",
+            "columnName": "sdt_nextclassdate",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -59,7 +65,7 @@
       },
       {
         "tableName": "lesson",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`les_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `les_student` INTEGER NOT NULL, `les_days` TEXT, `les_price` REAL, `les_type` TEXT, `les_nextpayment` INTEGER NOT NULL, `les_nextdate` INTEGER NOT NULL, FOREIGN KEY(`les_student`) REFERENCES `student`(`sdt_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`les_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `les_student` INTEGER NOT NULL, `les_days` TEXT, `les_price` REAL, `les_type` TEXT, `les_nextpayment` INTEGER, `les_nextdate` INTEGER, FOREIGN KEY(`les_student`) REFERENCES `student`(`sdt_id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "ID",
@@ -95,13 +101,13 @@
             "fieldPath": "nextPayment",
             "columnName": "les_nextpayment",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           },
           {
             "fieldPath": "nextDate",
             "columnName": "les_nextdate",
             "affinity": "INTEGER",
-            "notNull": true
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -145,7 +151,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"69f222dabb085107d16f14d0c6222413\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"bef8f0ea5c8b08dd1234cd3ea1213e78\")"
     ]
   }
 }

@@ -17,19 +17,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Name -->
+            <!-- Name https://stackoverflow.com/questions/31722034/how-to-change-color-of-textinputlayouts-label-and-edittext-underline-android/31723120 -->
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/input_layout_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:padding="16dp"
+                android:textColorHint="@color/colorAccentLightBlue">
 
                 <EditText
                     android:id="@+id/edit_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/name"
-
                     android:theme="@style/TextLabel" />
             </android.support.design.widget.TextInputLayout>
 

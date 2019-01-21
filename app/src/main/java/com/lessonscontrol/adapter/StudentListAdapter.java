@@ -2,6 +2,7 @@ package com.lessonscontrol.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import com.lessonscontrol.activities.MainActivity;
 import com.lessonscontrol.activities.R;
 import com.lessonscontrol.activities.ViewStudentActivity;
 import com.lessonscontrol.data.entities.Student;
+import com.lessonscontrol.utils.FormatUtil;
 
 import java.util.List;
 
@@ -45,7 +47,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     @NonNull
     @Override
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.student_details_card, parent, false);
+        View itemView = layoutInflater.inflate(R.layout.student_summary_card, parent, false);
         return new StudentViewHolder(itemView);
     }
 
@@ -54,8 +56,11 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         if (this.students != null) {
             final Student current = this.students.get(position);
             studentViewHolder.nameView.setText(current.getName());
-            //TODO colocar a data da proxima aula
-            studentViewHolder.nextClassView.setText("DUMMY");
+
+            Long nextLesson = current.getNextLessonDate();
+            Resources resources = layoutInflater.getContext().getResources();
+            String nextClassLabel = nextLesson != null ? FormatUtil.convertDateToString(nextLesson) : resources.getString(R.string.no_date_selected_lowercase);
+            studentViewHolder.nextClassView.setText(String.format("%s: %s", resources.getString(R.string.next_class), nextClassLabel));
 
             //Opens the ViewStudentActivity on click.
             studentViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +72,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
                     mainActivity.startActivityForResult(viewStudentIntent, ViewStudentActivity.VIEW_STUDENT_ACTIVITY_REQUEST_CODE);
                 }
             });
+
         } else {
             // Covers the case of data not being ready yet.
             studentViewHolder.nameView.setText("Data not ready.");

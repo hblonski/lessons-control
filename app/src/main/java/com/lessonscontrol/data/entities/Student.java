@@ -38,6 +38,9 @@ public class Student implements Parcelable {
     @ColumnInfo(name = "sdt_phone")
     private String phone;
 
+    @ColumnInfo(name = "sdt_nextclassdate")
+    private Long nextLessonDate;
+
     public Student(String name, String address, String email, String phone) {
         this.name = name;
         this.address = address;
@@ -83,6 +86,14 @@ public class Student implements Parcelable {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public Long getNextLessonDate() {
+        return nextLessonDate;
+    }
+
+    public void setNextLessonDate(Long nextLessonDate) {
+        this.nextLessonDate = nextLessonDate;
     }
 
     //Parcelable interface methods implementation. This interface is used to allow a Student object

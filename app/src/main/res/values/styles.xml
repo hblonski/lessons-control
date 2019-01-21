@@ -14,13 +14,10 @@
 
     <style name="TextLabel" parent="TextAppearance.AppCompat">
         <!-- Hint color and label color in FALSE state -->
-        <item name="android:textColorHint">@color/colorPrimary</item>
         <item name="android:textSize">20sp</item>
-        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
-        <item name="colorAccent">@color/colorPrimary</item>
+        <!-- editText line, when not selected -->
         <item name="colorControlNormal">@color/colorPrimary</item>
         <item name="colorControlActivated">@color/colorPrimary</item>
-        <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
     <style name="LabelPrimary" parent="Widget.Design.TextInputLayout">
@@ -34,7 +31,7 @@
     </style>
 
     <style name="Info" parent="Widget.Design.TextInputLayout">
-        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorAccentLightBlue</item>
         <item name="android:textSize">15sp</item>
     </style>
 

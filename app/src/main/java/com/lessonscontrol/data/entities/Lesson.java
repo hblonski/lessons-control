@@ -27,8 +27,6 @@ public class Lesson implements Parcelable {
     //Used when passing an student between activities.
     public static final String LESSON_EXTRA_KEY = "lesson";
 
-    public static final long NO_DATE_SELECTED = -1;
-
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "les_id")
@@ -54,13 +52,13 @@ public class Lesson implements Parcelable {
 
     //In milliseconds.
     @ColumnInfo(name = "les_nextpayment")
-    private long nextPayment;
+    private Long nextPayment;
 
     //In milliseconds.
     @ColumnInfo(name = "les_nextdate")
-    private long nextDate;
+    private Long nextDate;
 
-    public Lesson(long student, String days, Double price, String type, long nextPayment, long nextDate) {
+    public Lesson(long student, String days, Double price, String type, Long nextPayment, Long nextDate) {
         this.student = student;
         this.days = days;
         this.price = price;
@@ -110,19 +108,19 @@ public class Lesson implements Parcelable {
         this.type = type;
     }
 
-    public long getNextPayment() {
+    public Long getNextPayment() {
         return this.nextPayment;
     }
 
-    public void setNextPayment(long nextPayment) {
+    public void setNextPayment(Long nextPayment) {
         this.nextPayment = nextPayment;
     }
 
-    public long getNextDate() {
+    public Long getNextDate() {
         return this.nextDate;
     }
 
-    public void setNextDate(long nextDate) {
+    public void setNextDate(Long nextDate) {
         this.nextDate = nextDate;
     }
 

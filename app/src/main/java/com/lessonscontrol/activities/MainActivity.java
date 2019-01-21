@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.lessonscontrol.adapter.StudentListAdapter;
 import com.lessonscontrol.data.entities.Student;
+import com.lessonscontrol.data.viewModel.LessonViewModel;
 import com.lessonscontrol.data.viewModel.StudentViewModel;
 
 import java.util.List;
@@ -26,12 +27,15 @@ public class MainActivity extends AppCompatActivity {
 
     private StudentViewModel studentViewModel;
 
+    private LessonViewModel lessonViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        this.studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel.class);
 
         FloatingActionButton newStudentFAB = findViewById(R.id.new_student_fab);
 
