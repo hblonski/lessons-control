@@ -28,11 +28,13 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     class StudentViewHolder extends RecyclerView.ViewHolder {
         private final TextView nameView;
         private final TextView nextClassView;
+        private final TextView firstLetter;
 
         private StudentViewHolder(View itemView) {
             super(itemView);
             nameView = itemView.findViewById(R.id.student_name);
             nextClassView = itemView.findViewById(R.id.student_nextclass);
+            firstLetter = itemView.findViewById(R.id.first_letter_icon_text);
         }
     }
 
@@ -56,6 +58,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         if (this.students != null) {
             final Student current = this.students.get(position);
             studentViewHolder.nameView.setText(current.getName());
+            studentViewHolder.firstLetter.setText(String.valueOf(current.getName().toUpperCase().charAt(0)));
 
             Long nextLesson = current.getNextLessonDate();
             Resources resources = layoutInflater.getContext().getResources();

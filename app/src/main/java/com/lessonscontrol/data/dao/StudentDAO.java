@@ -28,6 +28,6 @@ public interface StudentDAO {
     @Update
     void update(Student student);
 
-    @Query("SELECT * FROM student ORDER BY sdt_name ASC")
+    @Query("SELECT * FROM student ORDER BY sdt_name DESC")
     LiveData<List<Student>> getAllStudents();
 }
