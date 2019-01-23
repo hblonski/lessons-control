@@ -28,4 +28,6 @@
     <string name="student_lessons">Aulas do estudante</string>
     <string name="no_date_selected">Sem data selecionada.</string>
     <string name="no_date_selected_lowercase">sem data selecionada.</string>
+    <string name="delete_student">Apagar estudante?</string>
+    <string name="delete_lesson">Apagar aula?</string>
 </resources>

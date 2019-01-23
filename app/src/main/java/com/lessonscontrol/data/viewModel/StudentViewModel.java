@@ -38,4 +38,8 @@ public class StudentViewModel extends AndroidViewModel {
     public void update(Student student) {
         this.studentRepository.update(student);
     }
+
+    public void delete(Student student) {
+        this.studentRepository.delete(student);
+    }
 }

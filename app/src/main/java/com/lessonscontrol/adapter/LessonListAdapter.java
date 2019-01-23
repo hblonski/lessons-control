@@ -1,10 +1,13 @@
 package com.lessonscontrol.adapter;
 
-import android.app.Activity;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import android.widget.TextView;
 import com.lessonscontrol.activities.EditLessonActivity;
 import com.lessonscontrol.activities.R;
 import com.lessonscontrol.data.entities.Lesson;
+import com.lessonscontrol.data.viewModel.LessonViewModel;
 import com.lessonscontrol.utils.FormatUtil;
 
 import java.util.List;
@@ -34,6 +38,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
         private final TextView nextPaymentView;
 
         private View lessonItemView;
+        private LessonViewModel lessonViewModel;
 
         private LessonViewHolder(View itemView) {
             super(itemView);
@@ -120,7 +125,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
     @Override
     public void onBindViewHolder(LessonViewHolder lessonViewHolder, int position) {
         if (this.lessons != null) {
-            final Activity context = (Activity) layoutInflater.getContext();
+            final AppCompatActivity context = (AppCompatActivity) layoutInflater.getContext();
             final Resources resources = context.getResources();
 
             final Lesson current = this.lessons.get(position);
@@ -146,6 +151,21 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
                     Intent editLessonActivityIntent = new Intent(context, EditLessonActivity.class);
                     editLessonActivityIntent.putExtra(Lesson.LESSON_EXTRA_KEY, current);
                     context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
+                }
+            });
+
+            ImageButton deleteLessonButton = lessonViewHolder.lessonItemView.findViewById(R.id.button_delete_lesson);
+            deleteLessonButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    new AlertDialog.Builder(context)
+                            .setTitle(resources.getString(R.string.delete_lesson))
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    ViewModelProviders.of(context).get(LessonViewModel.class).delete(current);
+                                }
+                            }).setNegativeButton(android.R.string.no, null).show();
                 }
             });
         } else {

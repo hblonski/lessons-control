@@ -35,6 +35,10 @@ public class LessonRepository {
         new UpdateAsyncTask(lessonDAO).execute(lesson);
     }
 
+    public void delete(Lesson lesson) {
+        new DeleteAsyncTask(lessonDAO).execute(lesson);
+    }
+
     public LiveData<List<Lesson>> findLessonsByStudent(Student student) {
         lessons = lessonDAO.findLessonsByStudent(student.getID());
         return lessons;
@@ -66,6 +70,21 @@ public class LessonRepository {
         @Override
         protected Void doInBackground(final Lesson... lessons) {
             lessonDAO.update(lessons[0]);
+            return null;
+        }
+    }
+
+    private static class DeleteAsyncTask extends AsyncTask<Lesson, Void, Void> {
+
+        private LessonDAO lessonDAO;
+
+        DeleteAsyncTask(LessonDAO lessonDAO) {
+            this.lessonDAO = lessonDAO;
+        }
+
+        @Override
+        protected Void doInBackground(final Lesson... lessons) {
+            lessonDAO.delete(lessons[0]);
             return null;
         }
     }

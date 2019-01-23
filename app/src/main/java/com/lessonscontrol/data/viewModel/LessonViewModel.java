@@ -32,6 +32,10 @@ public class LessonViewModel extends AndroidViewModel {
         lessonRepository.update(lesson);
     }
 
+    public void delete(Lesson lesson) {
+        lessonRepository.delete(lesson);
+    }
+
     public LiveData<List<Lesson>> findLessonsByStudent(Student student) {
         return lessonRepository.findLessonsByStudent(student);
     }

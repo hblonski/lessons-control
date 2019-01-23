@@ -27,5 +27,7 @@
     <string name="student_lessons">Student Lessons</string>
     <string name="no_date_selected">No date selected.</string>
     <string name="no_date_selected_lowercase">no date selected.</string>
+    <string name="delete_student">Delete student?</string>
+    <string name="delete_lesson">Delete lesson?</string>
 
 </resources>

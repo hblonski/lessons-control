@@ -2,9 +2,11 @@ package com.lessonscontrol.activities;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -27,6 +29,7 @@ public class ViewStudentActivity extends AppCompatActivity {
 
     /**
      * Request code for this activity. This code will be returned when the activity exits.
+     *
      * @see android.support.v4.app.FragmentActivity#startActivityForResult
      */
     public static final int VIEW_STUDENT_ACTIVITY_REQUEST_CODE = 2;
@@ -67,6 +70,22 @@ public class ViewStudentActivity extends AppCompatActivity {
                 Intent editStudentActivityIntent = new Intent(ViewStudentActivity.this, EditStudentActivity.class);
                 editStudentActivityIntent.putExtra(Student.STUDENT_EXTRA_KEY, student);
                 ViewStudentActivity.this.startActivityForResult(editStudentActivityIntent, EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE);
+            }
+        });
+
+        ImageButton deleteStudentButton = findViewById(R.id.button_delete_student);
+        deleteStudentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(ViewStudentActivity.this)
+                        .setTitle(getResources().getString(R.string.delete_student))
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                studentViewModel.delete(student);
+                                finish();
+                            }
+                        }).setNegativeButton(android.R.string.no, null).show();
             }
         });
 

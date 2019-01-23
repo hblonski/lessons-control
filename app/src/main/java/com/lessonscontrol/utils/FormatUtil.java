@@ -1,9 +1,6 @@
 package com.lessonscontrol.utils;
 
 import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.support.graphics.drawable.VectorDrawableCompat;
 import android.text.TextUtils;
 
 import java.security.InvalidParameterException;
@@ -125,14 +122,5 @@ public abstract class FormatUtil {
             default:
                 throw new InvalidParameterException("Invalid weekday.");
         }
-    }
-
-    public static Bitmap convertVectorDrawableToBitMap(VectorDrawableCompat vectorDrawable) {
-        Bitmap bitmap = Bitmap.createBitmap(vectorDrawable.getIntrinsicWidth(),
-                vectorDrawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        vectorDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        vectorDrawable.draw(canvas);
-        return bitmap;
     }
 }

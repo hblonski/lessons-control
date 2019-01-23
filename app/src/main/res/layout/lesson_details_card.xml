@@ -17,6 +17,18 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <ImageButton
+                android:id="@+id/button_delete_lesson"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/button_round"
+                android:src="@drawable/ic_delete_white_24dp"
+                android:backgroundTint="@android:color/holo_red_dark"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,6 +37,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/lesson_info"
+                android:layout_centerHorizontal="true"
                 android:theme="@style/LabelPrimary"/>
 
             <ImageButton
@@ -38,7 +51,6 @@
                 android:background="@drawable/button_round"
                 android:src="@drawable/ic_edit_white_24dp"
                 android:backgroundTint="@color/colorAccentYellow"/>
-
         </RelativeLayout >
 
         <View
