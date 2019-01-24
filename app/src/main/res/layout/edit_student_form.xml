@@ -24,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_name"
@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_mail"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_phone"
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_address"

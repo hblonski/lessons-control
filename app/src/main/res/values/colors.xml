@@ -11,9 +11,10 @@
     <color name="black_overlay">#66000000</color>
     <color name="black">#000000</color>
     <color name="light_gray">#e4e4e4</color>
+    <color name="dark_gray">#A8A8A8</color>
     <color name="light_gray_background">#efefef</color>
 
-    <color name="dayPressed">@color/colorAccentYellow</color>
-    <color name="daySelected">@color/colorAccentYellow</color>
+    <color name="dayPressed">@color/colorAccentLightBlue</color>
+    <color name="daySelected">@color/colorAccentLightBlue</color>
     <color name="dayDeselected">@android:color/darker_gray</color>
 </resources>

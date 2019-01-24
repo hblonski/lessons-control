@@ -38,6 +38,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="5dp"
                 android:text="@string/lesson_info"
+                android:layout_gravity="center"
                 android:theme="@style/LabelPrimary"/>
 
             <View
@@ -57,7 +58,7 @@
                 android:paddingBottom="8dp"
                 android:paddingTop="8dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_type"
@@ -102,7 +103,7 @@
                 android:paddingBottom="16dp"
                 android:paddingTop="8dp"
                 app:hintTextAppearance="@style/EditTextLabel"
-                android:textColorHint="@color/colorAccentLightBlue">
+                android:textColorHint="@color/dark_gray">
 
                 <EditText
                     android:id="@+id/edit_price"
@@ -142,7 +143,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
-                        app:mcv_selectionColor="@color/colorAccentYellow"
+                        app:mcv_selectionColor="@color/colorAccentLightBlue"
                         />
                 </LinearLayout>
 
@@ -177,7 +178,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
-                        app:mcv_selectionColor="@color/colorAccentYellow"
+                        app:mcv_selectionColor="@color/colorAccentLightBlue"
                         />
                 </LinearLayout>
 
