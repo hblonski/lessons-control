@@ -4,10 +4,12 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lessonscontrol.data.entities.Lesson;
@@ -62,10 +64,9 @@ public class EditLessonActivity extends AppCompatActivity {
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 } catch (InvalidParameterException e) {
-                    //TODO remover esse toast e marcar os required na tela
                     Toast.makeText(
                             getApplicationContext(),
-                            new String("One or more required fields are empty."),
+                            new String(getString(R.string.required_fields_empty)),
                             Toast.LENGTH_LONG).show();
                     Log.e(EditLessonActivity.this.getClass().toString(),
                             "Required argument missing when trying to create lesson.");
@@ -100,14 +101,17 @@ public class EditLessonActivity extends AppCompatActivity {
         List<MaterialDayPicker.Weekday> daysSelected = materialDayPicker.getSelectedDays();
 
         if (type == null || type.isEmpty()) {
+            ((TextInputLayout) findViewById(R.id.input_layout_type)).setError(getString(R.string.required_field));
             throw new InvalidParameterException("Lesson type is missing.");
         }
         if (daysSelected == null || daysSelected.isEmpty()) {
+            ((TextView) findViewById(R.id.edit_days_label)).setError(getString(R.string.required_field));
             throw new InvalidParameterException("Lesson schedule is missing.");
         }
 
         String value = ((EditText) findViewById(R.id.edit_price)).getText().toString().replace("$", "");
         if (value == null || value.isEmpty()) {
+            ((TextInputLayout) findViewById(R.id.input_layout_price)).setError(getString(R.string.required_field));
             throw new InvalidParameterException("Lesson price is missing.");
         }
 
@@ -117,11 +121,11 @@ public class EditLessonActivity extends AppCompatActivity {
 
         CalendarDay nextClassSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_class)).getSelectedDate();
         Date nextClassDate = nextClassSelectedDate != null ? nextClassSelectedDate.getDate() : null;
-        long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : null;
+        Long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : null;
 
         CalendarDay nextPaymentSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).getSelectedDate();
         Date nextPaymentDate = nextPaymentSelectedDate != null ? nextPaymentSelectedDate.getDate() : null;
-        long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : null;
+        Long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : null;
 
         if (lesson == null) {
             lesson = new Lesson(studentId, daysOfWeek, price, type, nextPaymentDateAsMillis, nextClassDateAsMillis);

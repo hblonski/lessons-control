@@ -32,5 +32,7 @@
     <string name="label_no_students">Press the button to add students.</string>
     <string name="text_title_left" translatable="false">Lessons</string>
     <string name="text_title_right" translatable="false">Control</string>
+    <string name="required_fields_empty">One or more required fields are empty.</string>
+    <string name="required_field">Required field</string>
 
 </resources>

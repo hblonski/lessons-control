@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -53,10 +54,9 @@ public class EditStudentActivity extends AppCompatActivity {
                     setResult(RESULT_OK, resultIntent);
                     finish();
                 } catch (IllegalArgumentException e) {
-                    //TODO remover esse toast e marcar os required na tela
                     Toast.makeText(
                             getApplicationContext(),
-                            new String("One or more required fields are empty."),
+                            new String(getString(R.string.required_fields_empty)),
                             Toast.LENGTH_LONG).show();
                     Log.e(EditStudentActivity.this.getClass().toString(),
                             "Required argument missing when trying to create student.");
@@ -82,6 +82,7 @@ public class EditStudentActivity extends AppCompatActivity {
         String phone = ((EditText) findViewById(R.id.edit_phone)).getText().toString();
 
         if (name == null || name.isEmpty()) {
+            ((TextInputLayout) findViewById(R.id.input_layout_name)).setError(getString(R.string.required_field));
             throw new IllegalArgumentException("Student name is missing");
         } else if (this.student != null) {
             this.student.setName(name);

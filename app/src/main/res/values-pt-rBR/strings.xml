@@ -31,4 +31,6 @@
     <string name="delete_student">Apagar estudante?</string>
     <string name="delete_lesson">Apagar aula?</string>
     <string name="label_no_students">Pressione o botão para adicionar estudantes.</string>
+    <string name="required_fields_empty">Um ou mais campos obrigatórios estão em branco.</string>
+    <string name="required_field">Campo obrigatório</string>
 </resources>

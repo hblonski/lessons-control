@@ -68,7 +68,6 @@
                     android:digits="0123456789+"
                     android:hint="@string/phone"
                     android:inputType="phone"
-
                     android:theme="@style/EditTextStyle" />
             </android.support.design.widget.TextInputLayout>
 
