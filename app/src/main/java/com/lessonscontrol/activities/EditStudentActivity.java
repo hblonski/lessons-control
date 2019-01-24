@@ -56,7 +56,7 @@ public class EditStudentActivity extends AppCompatActivity {
                 } catch (IllegalArgumentException e) {
                     Toast.makeText(
                             getApplicationContext(),
-                            new String(getString(R.string.required_fields_empty)),
+                            getString(R.string.required_fields_empty),
                             Toast.LENGTH_LONG).show();
                     Log.e(EditStudentActivity.this.getClass().toString(),
                             "Required argument missing when trying to create student.");

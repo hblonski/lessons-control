@@ -34,5 +34,6 @@
     <string name="text_title_right" translatable="false">Control</string>
     <string name="required_fields_empty">One or more required fields are empty.</string>
     <string name="required_field">Required field</string>
+    <string name="date_must_not_be_in_the_past">Date must not be in the past.</string>
 
 </resources>

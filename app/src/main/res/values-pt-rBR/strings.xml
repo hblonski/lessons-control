@@ -33,4 +33,5 @@
     <string name="label_no_students">Pressione o botão para adicionar estudantes.</string>
     <string name="required_fields_empty">Um ou mais campos obrigatórios estão em branco.</string>
     <string name="required_field">Campo obrigatório</string>
+    <string name="date_must_not_be_in_the_past">Data não pode ser inferior à atual.</string>
 </resources>

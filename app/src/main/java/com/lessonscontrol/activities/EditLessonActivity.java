@@ -3,6 +3,7 @@ package com.lessonscontrol.activities;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import com.lessonscontrol.utils.FormatUtil;
 import com.lessonscontrol.utils.MoneyTextWatcher;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import java.security.InvalidParameterException;
 import java.util.Date;
@@ -54,6 +56,9 @@ public class EditLessonActivity extends AppCompatActivity {
             populateViewWithReceivedLessonInfo();
         }
 
+        configureCalendarListener((MaterialCalendarView) findViewById(R.id.edit_next_class));
+        configureCalendarListener((MaterialCalendarView) findViewById(R.id.edit_next_payment));
+
         FloatingActionButton doneFAB = findViewById(R.id.edit_lesson_form_done_fab);
         doneFAB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +71,26 @@ public class EditLessonActivity extends AppCompatActivity {
                 } catch (InvalidParameterException e) {
                     Toast.makeText(
                             getApplicationContext(),
-                            new String(getString(R.string.required_fields_empty)),
+                            getString(R.string.required_fields_empty),
                             Toast.LENGTH_LONG).show();
                     Log.e(EditLessonActivity.this.getClass().toString(),
                             "Required argument missing when trying to create lesson.");
+                }
+            }
+        });
+    }
+
+    private void configureCalendarListener(MaterialCalendarView materialCalendarView) {
+        final CalendarDay today = CalendarDay.today();
+        materialCalendarView.setOnDateChangedListener(new OnDateSelectedListener() {
+            @Override
+            public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
+                if (calendarDay.isBefore(today)) {
+                    Toast.makeText(
+                            getApplicationContext(),
+                            R.string.date_must_not_be_in_the_past,
+                            Toast.LENGTH_LONG).show();
+                    materialCalendarView.clearSelection();
                 }
             }
         });
@@ -120,12 +141,18 @@ public class EditLessonActivity extends AppCompatActivity {
         long studentId = this.getIntent().getExtras().getLong(STUDENT_ID_KEY);
 
         CalendarDay nextClassSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_class)).getSelectedDate();
-        Date nextClassDate = nextClassSelectedDate != null ? nextClassSelectedDate.getDate() : null;
-        Long nextClassDateAsMillis = nextClassDate != null ? nextClassDate.getTime() : null;
+        if (nextClassSelectedDate == null) {
+            ((TextView) findViewById(R.id.label_next_class)).setError(getString(R.string.required_field));
+            throw new InvalidParameterException("Lesson date is missing.");
+        }
+        Long nextClassDateAsMillis = nextClassSelectedDate.getDate().getTime();
 
         CalendarDay nextPaymentSelectedDate = ((MaterialCalendarView) findViewById(R.id.edit_next_payment)).getSelectedDate();
-        Date nextPaymentDate = nextPaymentSelectedDate != null ? nextPaymentSelectedDate.getDate() : null;
-        Long nextPaymentDateAsMillis = nextPaymentDate != null ? nextPaymentDate.getTime() : null;
+        if (nextPaymentSelectedDate == null) {
+            ((TextView) findViewById(R.id.label_nextPayment)).setError(getString(R.string.required_field));
+            throw new InvalidParameterException("Lesson payment date is missing.");
+        }
+        Long nextPaymentDateAsMillis = nextPaymentSelectedDate.getDate().getTime();
 
         if (lesson == null) {
             lesson = new Lesson(studentId, daysOfWeek, price, type, nextPaymentDateAsMillis, nextClassDateAsMillis);
