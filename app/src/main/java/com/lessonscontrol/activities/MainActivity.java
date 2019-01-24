@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lessonscontrol.adapter.StudentListAdapter;
 import com.lessonscontrol.data.entities.Student;
@@ -25,7 +26,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private StudentViewModel studentViewModel;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<Student> students) {
                 studentListAdapter.setStudents(students);
+                handleNoInfo(students);
             }
         });
+    }
+
+    private void handleNoInfo(List<Student> students) {
+        TextView noInfoFound = findViewById(R.id.no_info_text_view);
+        if (students == null || students.isEmpty()) {
+            noInfoFound.setVisibility(View.VISIBLE);
+        } else {
+            noInfoFound.setVisibility(View.GONE);
+        }
     }
 }
