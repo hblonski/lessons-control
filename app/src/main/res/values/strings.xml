@@ -29,5 +29,8 @@
     <string name="no_date_selected_lowercase">no date selected.</string>
     <string name="delete_student">Delete student?</string>
     <string name="delete_lesson">Delete lesson?</string>
+    <string name="label_no_students">Press the button to add students.</string>
+    <string name="text_title_left" translatable="false">Lessons</string>
+    <string name="text_title_right" translatable="false">Control</string>
 
 </resources>

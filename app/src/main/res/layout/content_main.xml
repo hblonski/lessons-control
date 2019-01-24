@@ -27,6 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:textColor="@color/colorPrimaryDark"
-        android:text="Press the button to add students."/>
+        android:text="@string/label_no_students"/>
 
 </RelativeLayout>
