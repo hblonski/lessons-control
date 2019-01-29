@@ -130,7 +130,11 @@ public class EditLessonActivity extends AppCompatActivity {
             throw new InvalidParameterException("Lesson schedule is missing.");
         }
 
-        String value = ((EditText) findViewById(R.id.edit_price)).getText().toString().replace("$", "");
+        String value = ((EditText) findViewById(R.id.edit_price))
+                .getText()
+                .toString()
+                .replaceAll("[^\\d,]", "")
+                .replaceAll(",", ".");
         if (value == null || value.isEmpty()) {
             ((TextInputLayout) findViewById(R.id.input_layout_price)).setError(getString(R.string.required_field));
             throw new InvalidParameterException("Lesson price is missing.");
