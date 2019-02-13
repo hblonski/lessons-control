@@ -45,7 +45,7 @@ public class EditLessonActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_lesson);
-        lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel.class);;
+        lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel.class);
 
         EditText priceInput = findViewById(R.id.edit_price);
         priceInput.addTextChangedListener(new MoneyTextWatcher(priceInput));
