@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
@@ -52,4 +54,8 @@ dependencies {
     implementation 'ca.antonious:materialdaypicker:0.4.0'
     //DateTime Picker
     implementation 'com.github.prolificinteractive:material-calendarview:1.6.0'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
