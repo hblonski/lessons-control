@@ -38,9 +38,9 @@ class ViewStudentActivity : AppCompatActivity() {
 
         lessonViewModel = ViewModelProviders.of(this).get(LessonViewModel::class.java)
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel::class.java)
-        student = this.intent.getParcelableExtra(Student.STUDENT_EXTRA_KEY)
+        student = intent.getParcelableExtra(Student.STUDENT_EXTRA_KEY)
 
-        dataHandler.populateFields(student)
+        dataHandler.populateFields()
 
         val lessonsRecyclerView = findViewById<RecyclerView>(R.id.lessons_recycler_view)
         lessonListAdapter = LessonListAdapter(this)
@@ -79,7 +79,7 @@ class ViewStudentActivity : AppCompatActivity() {
         //Updates the screen if the EditStudentActivity returns success (student updated)
         if (requestCode == EditStudentActivity.EDIT_STUDENT_ACTIVITY_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             student = data.getParcelableExtra(Student.STUDENT_EXTRA_KEY)
-            dataHandler.populateFields(student)
+            dataHandler.populateFields()
         }
     }
 

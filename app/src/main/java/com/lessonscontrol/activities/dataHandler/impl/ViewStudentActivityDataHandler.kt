@@ -2,15 +2,13 @@ package com.lessonscontrol.activities.dataHandler.impl
 
 import android.app.Activity
 import android.arch.lifecycle.Observer
-import android.os.Parcelable
 import android.view.View
 import android.widget.TextView
 import com.lessonscontrol.activities.R
 import com.lessonscontrol.activities.ViewStudentActivity
-import com.lessonscontrol.activities.dataHandler.ActivityEditDataHandler
-import com.lessonscontrol.data.entities.Student
+import com.lessonscontrol.activities.dataHandler.ActivityDataHandler
 
-class ViewStudentActivityDataHandler(override val activity: Activity) : ActivityEditDataHandler {
+class ViewStudentActivityDataHandler(override val activity: Activity) : ActivityDataHandler {
 
     private val viewStudentActivity = activity as ViewStudentActivity
 
@@ -30,11 +28,10 @@ class ViewStudentActivityDataHandler(override val activity: Activity) : Activity
         })
     }
 
-    override fun populateFields(parcelable: Parcelable) {
-        val student = parcelable as Student
-        (viewStudentActivity.findViewById<View>(R.id.view_name) as TextView).text = student.name
-        (viewStudentActivity.findViewById<View>(R.id.view_phone) as TextView).text = student.phone
-        (viewStudentActivity.findViewById<View>(R.id.view_mail) as TextView).text = student.email
-        (viewStudentActivity.findViewById<View>(R.id.view_address) as TextView).text = student.address
+    override fun populateFields() {
+        (viewStudentActivity.findViewById<View>(R.id.view_name) as TextView).text = viewStudentActivity.student.name
+        (viewStudentActivity.findViewById<View>(R.id.view_phone) as TextView).text = viewStudentActivity.student.phone
+        (viewStudentActivity.findViewById<View>(R.id.view_mail) as TextView).text = viewStudentActivity.student.email
+        (viewStudentActivity.findViewById<View>(R.id.view_address) as TextView).text = viewStudentActivity.student.address
     }
 }

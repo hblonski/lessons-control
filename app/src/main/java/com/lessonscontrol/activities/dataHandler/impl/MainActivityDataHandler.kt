@@ -20,7 +20,7 @@ class MainActivityDataHandler (override val activity: Activity) : ActivityDataHa
         })
     }
 
-    override fun populateFields(parcelable: Parcelable) {
+    override fun populateFields() {
         //Empty, since the Main Activity shows no info of any specific Parcelable. It only observes
         //the students list.
     }

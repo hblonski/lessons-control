@@ -1,7 +1,6 @@
 package com.lessonscontrol.activities.dataHandler
 
 import android.app.Activity
-import android.os.Parcelable
 
 interface ActivityDataHandler {
 
@@ -9,5 +8,5 @@ interface ActivityDataHandler {
 
     fun observeDataChange()
 
-    fun populateFields(parcelable: Parcelable)
+    fun populateFields()
 }
