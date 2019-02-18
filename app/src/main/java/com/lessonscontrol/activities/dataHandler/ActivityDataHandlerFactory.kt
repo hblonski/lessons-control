@@ -11,16 +11,14 @@ import com.lessonscontrol.activities.dataHandler.impl.MainActivityDataHandler
 import com.lessonscontrol.activities.dataHandler.impl.ViewStudentActivityDataHandler
 import java.security.InvalidParameterException
 
-abstract class ActivityDataHandlerFactory {
-    companion object {
-        fun createDataHandler(activity: Activity) : ActivityDataHandler {
-            return when (activity) {
-                is MainActivity -> MainActivityDataHandler(activity)
-                is ViewStudentActivity -> ViewStudentActivityDataHandler(activity)
-                is EditStudentActivity -> EditStudentActivityDataHandler(activity)
-                is EditLessonActivity -> EditLessonActivityDataHandler(activity)
-                else -> throw InvalidParameterException("Activity does not have an implemented Data Handler.")
-            }
+object ActivityDataHandlerFactory {
+    fun createDataHandler(activity: Activity) : ActivityDataHandler {
+        return when (activity) {
+            is MainActivity -> MainActivityDataHandler(activity)
+            is ViewStudentActivity -> ViewStudentActivityDataHandler(activity)
+            is EditStudentActivity -> EditStudentActivityDataHandler(activity)
+            is EditLessonActivity -> EditLessonActivityDataHandler(activity)
+            else -> throw InvalidParameterException("Activity does not have an implemented Data Handler.")
         }
     }
 }

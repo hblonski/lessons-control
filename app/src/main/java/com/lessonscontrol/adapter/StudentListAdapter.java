@@ -62,7 +62,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
             Long nextLesson = current.getNextLessonDate();
             Resources resources = layoutInflater.getContext().getResources();
-            String nextClassLabel = nextLesson != null ? FormatUtil.convertDateToString(nextLesson) : resources.getString(R.string.no_date_selected_lowercase);
+            String nextClassLabel = nextLesson != null ? FormatUtil.INSTANCE.convertDateToString(nextLesson) : resources.getString(R.string.no_date_selected_lowercase);
             studentViewHolder.nextClassView.setText(String.format("%s: %s", resources.getString(R.string.next_class), nextClassLabel));
 
             //Opens the ViewStudentActivity on click.

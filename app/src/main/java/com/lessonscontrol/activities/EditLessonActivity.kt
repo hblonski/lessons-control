@@ -66,13 +66,13 @@ class EditLessonActivity : AppCompatActivity() {
 
     private fun configureCalendarListener(materialCalendarView: MaterialCalendarView) {
         val today = CalendarDay.today()
-        materialCalendarView.setOnDateChangedListener { materialCalendarView, calendarDay, _ ->
+        materialCalendarView.setOnDateChangedListener { cv, calendarDay, _ ->
             if (calendarDay.isBefore(today)) {
                 Toast.makeText(
                         applicationContext,
                         R.string.date_must_not_be_in_the_past,
                         Toast.LENGTH_LONG).show()
-                materialCalendarView.clearSelection()
+                cv.clearSelection()
             }
         }
     }

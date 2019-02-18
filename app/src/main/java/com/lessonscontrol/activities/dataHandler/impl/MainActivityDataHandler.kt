@@ -14,7 +14,7 @@ class MainActivityDataHandler (override val activity: Activity) : ActivityDataHa
     private val mainActivity = activity as MainActivity
 
     override fun observeDataChange() {
-        mainActivity.studentViewModel!!.allStudents.observe(mainActivity, Observer { students ->
+        mainActivity.studentViewModel.allStudents.observe(mainActivity, Observer { students ->
             mainActivity.studentListAdapter.setStudents(students)
             handleEmptyDataList(students)
         })

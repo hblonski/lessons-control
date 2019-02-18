@@ -25,7 +25,7 @@ class EditLessonActivityDataHandler(override val activity: Activity) : ActivityE
         val materialDayPicker = editLessonActivity.findViewById<MaterialDayPicker>(R.id.edit_days)
         val daysSelected = materialDayPicker.selectedDays
 
-        if (type == null || type.isEmpty()) {
+        if (type.isEmpty()) {
             val typeTextInputLayout = editLessonActivity.findViewById<View>(R.id.input_layout_type) as TextInputLayout
             typeTextInputLayout.error = editLessonActivity.getString(R.string.required_field)
             throw InvalidParameterException("Lesson type is missing.")
@@ -41,7 +41,7 @@ class EditLessonActivityDataHandler(override val activity: Activity) : ActivityE
                 .toString()
                 .replace("[^\\d,]".toRegex(), "")
                 .replace(",".toRegex(), ".")
-        if (value == null || value.isEmpty()) {
+        if (value.isEmpty()) {
             val priceInputLayout = editLessonActivity.findViewById<View>(R.id.input_layout_price) as TextInputLayout
             priceInputLayout.error = editLessonActivity.getString(R.string.required_field)
             throw InvalidParameterException("Lesson price is missing.")

@@ -131,18 +131,18 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
             final Lesson current = this.lessons.get(position);
             lessonViewHolder.typeView.setText(current.getType());
             context.getResources();
-            lessonViewHolder.daysView.setText(FormatUtil.formatWeekDayIDsForDisplay(current.getDays(), resources, context.getPackageName()));
+            lessonViewHolder.daysView.setText(FormatUtil.INSTANCE.formatWeekDayIDsForDisplay(current.getDays(), resources, context.getPackageName()));
 
             String noDateSelected = resources.getString(R.string.no_date_selected);
             Long nextClassDate = current.getNextDate();
-            String nextClassDateAsString = nextClassDate != null ? FormatUtil.convertDateToString(nextClassDate) : noDateSelected;
+            String nextClassDateAsString = nextClassDate != null ? FormatUtil.INSTANCE.convertDateToString(nextClassDate) : noDateSelected;
             lessonViewHolder.nextClassView.setText(nextClassDateAsString);
 
             Long nextPaymentDate = current.getNextPayment();
-            String nextClassPaymentAsString = nextPaymentDate != null ? FormatUtil.convertDateToString(nextPaymentDate) : noDateSelected;
+            String nextClassPaymentAsString = nextPaymentDate != null ? FormatUtil.INSTANCE.convertDateToString(nextPaymentDate) : noDateSelected;
             lessonViewHolder.nextPaymentView.setText(nextClassPaymentAsString);
 
-            lessonViewHolder.priceView.setText(FormatUtil.convertDoubleToMoney(current.getPrice()));
+            lessonViewHolder.priceView.setText(FormatUtil.INSTANCE.convertDoubleToMoney(current.getPrice()));
 
             ImageButton editButton = lessonViewHolder.lessonItemView.findViewById(R.id.button_edit_lesson);
             editButton.setOnClickListener(new View.OnClickListener() {
@@ -150,7 +150,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
                 public void onClick(View view) {
                     Intent editLessonActivityIntent = new Intent(context, EditLessonActivity.class);
                     editLessonActivityIntent.putExtra(Lesson.LESSON_EXTRA_KEY, current);
-                    context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.Companion.getEDIT_LESSON_ACTIVITY_REQUEST_CODE());
+                    context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
                 }
             });
 
