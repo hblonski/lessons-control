@@ -8,6 +8,7 @@ import com.lessonscontrol.activities.EditStudentActivity
 import com.lessonscontrol.activities.R
 import com.lessonscontrol.activities.dataHandler.ActivityEditDataHandler
 import com.lessonscontrol.data.entities.Student
+import java.security.InvalidParameterException
 
 class EditStudentActivityDataHandler(override val activity: Activity) : ActivityEditDataHandler {
 
@@ -16,6 +17,7 @@ class EditStudentActivityDataHandler(override val activity: Activity) : Activity
     /**
      * Updates the activity [Student] or, if it is null, creates a new one using UI input data.
      */
+    @Throws(InvalidParameterException::class)
     override fun updateParcelable() {
         val name = (editStudentActivity.findViewById<View>(R.id.edit_name) as EditText).text.toString()
         val email = (editStudentActivity.findViewById<View>(R.id.edit_mail) as EditText).text.toString()

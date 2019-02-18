@@ -150,7 +150,7 @@ public class LessonListAdapter extends RecyclerView.Adapter<LessonListAdapter.Le
                 public void onClick(View view) {
                     Intent editLessonActivityIntent = new Intent(context, EditLessonActivity.class);
                     editLessonActivityIntent.putExtra(Lesson.LESSON_EXTRA_KEY, current);
-                    context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.EDIT_LESSON_ACTIVITY_REQUEST_CODE);
+                    context.startActivityForResult(editLessonActivityIntent, EditLessonActivity.Companion.getEDIT_LESSON_ACTIVITY_REQUEST_CODE());
                 }
             });
 
