@@ -42,9 +42,9 @@ object FormatUtil {
      * @param days a list of [MaterialDayPicker].
      * @return string in the specified format. null if the list is empty or null.
      */
-    fun convertMaterialDayPickerListToString(days: List<MaterialDayPicker.Weekday>?): String? {
+    fun convertMaterialDayPickerListToString(days: List<MaterialDayPicker.Weekday>?): String {
         if (days == null || days.isEmpty()) {
-            return null
+            return DEFAULT_VALUE
         }
         return days.joinToString(separator = DAYS_FORMAT_SEPARATOR) { day -> getWeekDayID(day) }
     }

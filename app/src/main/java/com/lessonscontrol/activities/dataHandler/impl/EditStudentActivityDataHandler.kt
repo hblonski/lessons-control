@@ -34,11 +34,11 @@ class EditStudentActivityDataHandler(override val activity: Activity) : Activity
                 editStudentActivity.student!!.address = address
                 editStudentActivity.student!!.email = email
                 editStudentActivity.student!!.phone = phone
-                editStudentActivity.studentViewModel.update(editStudentActivity.student)
+                editStudentActivity.studentViewModel.update(editStudentActivity.student as Student)
             }
             else -> {
                 editStudentActivity.student = Student(name, address, email, phone)
-                editStudentActivity.studentViewModel.insert(editStudentActivity.student)
+                editStudentActivity.studentViewModel.insert(editStudentActivity.student as Student)
             }
         }
     }

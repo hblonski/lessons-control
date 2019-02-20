@@ -71,14 +71,14 @@ class EditLessonActivityDataHandler(override val activity: Activity) : ActivityE
 
         if (editLessonActivity.lesson == null) {
             editLessonActivity.lesson = Lesson(studentId, daysOfWeek, price, type, nextPaymentDateAsMillis, nextClassDateAsMillis)
-            editLessonActivity.lessonViewModel.insert(editLessonActivity.lesson)
+            editLessonActivity.lessonViewModel.insert(editLessonActivity.lesson as Lesson)
         } else {
             editLessonActivity.lesson!!.days = daysOfWeek
             editLessonActivity.lesson!!.price = price
             editLessonActivity.lesson!!.type = type
             editLessonActivity.lesson!!.nextDate = nextClassDateAsMillis
             editLessonActivity.lesson!!.nextPayment = nextPaymentDateAsMillis
-            editLessonActivity.lessonViewModel.update(editLessonActivity.lesson)
+            editLessonActivity.lessonViewModel.update(editLessonActivity.lesson as Lesson)
         }
     }
 
