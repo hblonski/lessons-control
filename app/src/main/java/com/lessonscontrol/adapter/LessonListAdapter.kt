@@ -70,21 +70,12 @@ class LessonListAdapter(context: Context) : RecyclerView.Adapter<LessonListAdapt
 
             if (view.visibility == View.GONE) {
                 view.visibility = View.VISIBLE
-
-                if (label != null) {
-                    label.visibility = View.VISIBLE
-                }
-                if (separator != null) {
-                    separator.visibility = View.VISIBLE
-                }
+                label?.visibility = View.VISIBLE
+                separator?.visibility = View.VISIBLE
             } else {
                 view.visibility = View.GONE
-                if (label != null) {
-                    label.visibility = View.GONE
-                }
-                if (separator != null) {
-                    separator.visibility = View.GONE
-                }
+                label?.visibility = View.GONE
+                separator?.visibility = View.GONE
             }
         }
 
@@ -130,7 +121,7 @@ class LessonListAdapter(context: Context) : RecyclerView.Adapter<LessonListAdapt
             deleteLessonButton.setOnClickListener {
                 AlertDialog.Builder(context)
                         .setTitle(resources.getString(R.string.delete_lesson))
-                        .setPositiveButton(android.R.string.yes) { dialogInterface, i -> ViewModelProviders.of(context).get(LessonViewModel::class.java).delete(current) }.setNegativeButton(android.R.string.no, null).show()
+                        .setPositiveButton(android.R.string.yes) { _, _ -> ViewModelProviders.of(context).get(LessonViewModel::class.java).delete(current) }.setNegativeButton(android.R.string.no, null).show()
             }
         } else {
             // Covers the case of data not being ready yet.
