@@ -8,6 +8,7 @@ import android.widget.TextView
 import com.lessonscontrol.activities.MainActivity
 import com.lessonscontrol.activities.R
 import com.lessonscontrol.activities.dataHandler.ActivityDataHandler
+import com.lessonscontrol.data.entities.Student
 
 class MainActivityDataHandler (override val activity: Activity) : ActivityDataHandler {
 
@@ -15,7 +16,7 @@ class MainActivityDataHandler (override val activity: Activity) : ActivityDataHa
 
     override fun observeDataChange() {
         mainActivity.studentViewModel.allStudents.observe(mainActivity, Observer { students ->
-            mainActivity.studentListAdapter.setStudents(students)
+            mainActivity.studentListAdapter.setStudents(students as List<Student>)
             handleEmptyDataList(students)
         })
     }
